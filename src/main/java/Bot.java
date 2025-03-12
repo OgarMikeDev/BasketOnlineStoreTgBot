@@ -11,6 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 
 import java.io.File;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Bot extends TelegramLongPollingBot {
     //Кнопка для добавления товара в корзину
@@ -138,10 +139,6 @@ public class Bot extends TelegramLongPollingBot {
                     .chatId(chatId)
                     .messageId(messageId)
                     .build();
-            //Для избежания ошибкок при откате картинок
-            AnswerCallbackQuery answerCallbackQuery = AnswerCallbackQuery.builder()
-                    .callbackQueryId(update.getCallbackQuery().getId())
-                    .build();
             //Для отправки фотографий
             SendPhoto sendPhoto = new SendPhoto();
             sendPhoto.setChatId(chatId);
@@ -160,28 +157,24 @@ public class Bot extends TelegramLongPollingBot {
                 sendPhoto.setCaption(buttonForСollagenDHC12000.getText());
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/dhc12000.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
-                try {
-                    if (!sendPhoto.equals(null)) {
-                        execute(sendPhoto);
-                        System.out.println("Отправка фото");
-                    }
-                } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
-                }
-                System.out.println("Все отправления прошли!\n");
             }
 
-
+            String strSendPhoto = String.valueOf(sendPhoto);
+            int leftIndexForCaption = strSendPhoto.indexOf("caption=") + "caption=".length();
+            int rightIndexForCaption = strSendPhoto.indexOf(",", leftIndexForCaption);
+            String caption = strSendPhoto.substring(leftIndexForCaption, rightIndexForCaption);
+            System.out.println("Ну типо отсутствие назовухи фоточки: " + caption.equals("null"));
             try {
-                execute(answerCallbackQuery);
-                if (!editMessageText.getText().equals(null)) {
-                    execute(editMessageText);
-                    System.out.println("Отправка текста");
+                if (!caption.equals("null")) {
+                    execute(sendPhoto);
+                    System.out.println("Отправка фотки");
                 }
-                if (!editMessageReplyMarkup.getReplyMarkup().equals(null)) {
-                    execute(editMessageReplyMarkup);
-                    System.out.println("Отправка клавы");
-                }
+                execute(editMessageText);
+                System.out.println("Отправка текста");
+
+                execute(editMessageReplyMarkup);
+                System.out.println("Отправка клавы");
+
 
                 System.out.println("Все отправления прошли!\n");
             } catch (Exception ex) {
