@@ -24,8 +24,8 @@ public class Bot extends TelegramLongPollingBot {
             .build();
     //Клавиатура для кнопки для добавления товара в корзину
     private InlineKeyboardMarkup keyboardForButtonForAddCollagenInBasket = InlineKeyboardMarkup.builder()
-            .keyboardRow(List.of(buttonForAddCollagenInBasket))
-            .keyboardRow(List.of(buttonForReturnBack))
+            .keyboardRow(List.of(buttonForAddCollagenInBasket, buttonForReturnBack))
+//            .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
     //Кнопка для запуска тг-бота
