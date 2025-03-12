@@ -8,3 +8,4 @@ public class Main {
         telegramBotsApi.registerBot(bot);
     }
 }
+

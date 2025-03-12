@@ -1,14 +1,33 @@
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
+import java.io.File;
 import java.util.List;
 
 public class Bot extends TelegramLongPollingBot {
+    //Кнопка для добавления товара в корзину
+    private InlineKeyboardButton buttonForAddCollagenInBasket = InlineKeyboardButton.builder()
+            .text("Добавить в корзину")
+            .callbackData("добавить в корзину")
+            .build();
+    //Кнопка для возврата назад
+    private InlineKeyboardButton buttonForReturnBack = InlineKeyboardButton.builder()
+            .text("Вернуться назад")
+            .callbackData("вернуться назад")
+            .build();
+    //Клавиатура для кнопки для добавления товара в корзину
+    private InlineKeyboardMarkup keyboardForButtonForAddCollagenInBasket = InlineKeyboardMarkup.builder()
+            .keyboardRow(List.of(buttonForAddCollagenInBasket))
+            .keyboardRow(List.of(buttonForReturnBack))
+            .build();
+
     //Кнопка для запуска тг-бота
     private InlineKeyboardButton buttonForStartTgBot = InlineKeyboardButton.builder()
             .text("Запуск")
@@ -21,8 +40,8 @@ public class Bot extends TelegramLongPollingBot {
 
     //Кнопка для вывода всех товаров
     private InlineKeyboardButton buttonForGetListItems = InlineKeyboardButton.builder()
-            .text("Получить все товары")
-            .callbackData("получить все товары")
+            .text("Посмотреть все товары")
+            .callbackData("посмотреть все товары")
             .build();
     //Кнопка для вывода всех товаров
     private InlineKeyboardButton buttonForMyBasket = InlineKeyboardButton.builder()
@@ -33,6 +52,38 @@ public class Bot extends TelegramLongPollingBot {
     private InlineKeyboardMarkup keyboardForButtonForGetListItems = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForGetListItems))
             .keyboardRow(List.of(buttonForMyBasket))
+            .build();
+
+    //Кнопка для категории жидкого коллагена
+    private InlineKeyboardButton buttonForLiquidCollagen = InlineKeyboardButton.builder()
+            .text("Питьевой жидкий коллаген")
+            .callbackData("жидкий коллаген")
+            .build();
+    //Кнопка для категории коллагена в порошке
+    private InlineKeyboardButton buttonForPowderCollagen = InlineKeyboardButton.builder()
+            .text("Коллаген в порошке")
+            .callbackData("коллаген в порошке")
+            .build();
+    //Кнопка для категории таблетированного коллагена
+    private InlineKeyboardButton buttonForTabletCollagen = InlineKeyboardButton.builder()
+            .text("Коллаген в таблетках")
+            .callbackData("коллаген в таблетках")
+            .build();
+    //Клавиатура для кнопки для вывода всех категорий товаров
+    private InlineKeyboardMarkup keyboardForButtonForAllCategories = InlineKeyboardMarkup.builder()
+            .keyboardRow(List.of(buttonForLiquidCollagen))
+            .keyboardRow(List.of(buttonForPowderCollagen))
+            .keyboardRow(List.of(buttonForTabletCollagen))
+            .build();
+
+    //Кнопка для коллагена DHC 12000mg
+    private InlineKeyboardButton buttonForСollagenDHC12000 = InlineKeyboardButton.builder()
+            .text("Жидкий коллаген DHC 12000mg")
+            .callbackData("жидкий коллаген DHC 12000mg")
+            .build();
+    //Клавиатура для кнопки для коллагена DHC 12000mg
+    private InlineKeyboardMarkup keyboardForButtonForLiquidCollagen = InlineKeyboardMarkup.builder()
+            .keyboardRow(List.of(buttonForСollagenDHC12000))
             .build();
 
 
@@ -73,19 +124,39 @@ public class Bot extends TelegramLongPollingBot {
             String chatId = update.getCallbackQuery().getMessage().getChatId().toString();
             Integer messageId = update.getCallbackQuery().getMessage().getMessageId();
 
+            //Для отправки текста
             EditMessageText editMessageText = EditMessageText.builder()
                     .chatId(chatId)
                     .messageId(messageId)
                     .text("")
                     .build();
+            //Для отправки клавиатур с кнопками
             EditMessageReplyMarkup editMessageReplyMarkup = EditMessageReplyMarkup.builder()
                     .chatId(chatId)
                     .messageId(messageId)
                     .build();
+            //Для отправки фотографий
+            SendPhoto sendPhoto = new SendPhoto();
+            sendPhoto.setChatId(chatId);
 
             if (callbackData.equals(buttonForStartTgBot.getCallbackData())) {
                 editMessageText.setText("Выберите одну из команд:");
                 editMessageReplyMarkup.setReplyMarkup(keyboardForButtonForGetListItems);
+            } else if (callbackData.equals(buttonForGetListItems.getCallbackData())) {
+                editMessageText.setText("Выберите категорию товаров");
+                editMessageReplyMarkup.setReplyMarkup(keyboardForButtonForAllCategories);
+            } else if (callbackData.equals(buttonForLiquidCollagen.getCallbackData())) {
+                editMessageText.setText("Питьевой коллаген");
+                editMessageReplyMarkup.setReplyMarkup(keyboardForButtonForLiquidCollagen);
+            } else if (callbackData.equals(buttonForСollagenDHC12000.getCallbackData())) {
+                sendPhoto.setCaption("Collagen 12000mg");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/dhc12000.jpg")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+                try {
+                    execute(sendPhoto);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
 
             try {
