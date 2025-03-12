@@ -19,13 +19,12 @@ public class Bot extends TelegramLongPollingBot {
             .build();
     //Кнопка для возврата назад
     private InlineKeyboardButton buttonForReturnBack = InlineKeyboardButton.builder()
-            .text("Вернуться назад")
-            .callbackData("вернуться назад")
+            .text("Вернуться на главную")
+            .callbackData("вернуться на главную")
             .build();
     //Клавиатура для кнопки для добавления товара в корзину
     private InlineKeyboardMarkup keyboardForButtonForAddCollagenInBasket = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForAddCollagenInBasket, buttonForReturnBack))
-//            .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
     //Кнопка для запуска тг-бота
@@ -52,6 +51,7 @@ public class Bot extends TelegramLongPollingBot {
     private InlineKeyboardMarkup keyboardForButtonForGetListItems = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForGetListItems))
             .keyboardRow(List.of(buttonForMyBasket))
+            .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
     //Кнопка для категории жидкого коллагена
@@ -74,6 +74,7 @@ public class Bot extends TelegramLongPollingBot {
             .keyboardRow(List.of(buttonForLiquidCollagen))
             .keyboardRow(List.of(buttonForPowderCollagen))
             .keyboardRow(List.of(buttonForTabletCollagen))
+            .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
     //Кнопка для коллагена DHC 12000mg
@@ -84,6 +85,7 @@ public class Bot extends TelegramLongPollingBot {
     //Клавиатура для кнопки для коллагена DHC 12000mg
     private InlineKeyboardMarkup keyboardForButtonForLiquidCollagen = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForСollagenDHC12000))
+            .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
 
@@ -139,7 +141,8 @@ public class Bot extends TelegramLongPollingBot {
             SendPhoto sendPhoto = new SendPhoto();
             sendPhoto.setChatId(chatId);
 
-            if (callbackData.equals(buttonForStartTgBot.getCallbackData())) {
+            if (callbackData.equals(buttonForStartTgBot.getCallbackData()) ||
+                    callbackData.equals(buttonForReturnBack.getCallbackData())) {
                 editMessageText.setText("Выберите одну из команд:");
                 editMessageReplyMarkup.setReplyMarkup(keyboardForButtonForGetListItems);
             } else if (callbackData.equals(buttonForGetListItems.getCallbackData())) {
@@ -149,7 +152,7 @@ public class Bot extends TelegramLongPollingBot {
                 editMessageText.setText("Питьевой коллаген");
                 editMessageReplyMarkup.setReplyMarkup(keyboardForButtonForLiquidCollagen);
             } else if (callbackData.equals(buttonForСollagenDHC12000.getCallbackData())) {
-                sendPhoto.setCaption("Collagen 12000mg");
+                sendPhoto.setCaption(buttonForСollagenDHC12000.getText());
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/dhc12000.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
                 try {
