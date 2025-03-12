@@ -1,4 +1,5 @@
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
@@ -137,6 +138,10 @@ public class Bot extends TelegramLongPollingBot {
                     .chatId(chatId)
                     .messageId(messageId)
                     .build();
+            //Для избежания ошибкок при откате картинок
+            AnswerCallbackQuery answerCallbackQuery = AnswerCallbackQuery.builder()
+                    .callbackQueryId(update.getCallbackQuery().getId())
+                    .build();
             //Для отправки фотографий
             SendPhoto sendPhoto = new SendPhoto();
             sendPhoto.setChatId(chatId);
@@ -156,15 +161,29 @@ public class Bot extends TelegramLongPollingBot {
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/dhc12000.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
                 try {
-                    execute(sendPhoto);
+                    if (!sendPhoto.equals(null)) {
+                        execute(sendPhoto);
+                        System.out.println("Отправка фото");
+                    }
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                 }
+                System.out.println("Все отправления прошли!\n");
             }
 
+
             try {
-                execute(editMessageText);
-                execute(editMessageReplyMarkup);
+                execute(answerCallbackQuery);
+                if (!editMessageText.getText().equals(null)) {
+                    execute(editMessageText);
+                    System.out.println("Отправка текста");
+                }
+                if (!editMessageReplyMarkup.getReplyMarkup().equals(null)) {
+                    execute(editMessageReplyMarkup);
+                    System.out.println("Отправка клавы");
+                }
+
+                System.out.println("Все отправления прошли!\n");
             } catch (Exception ex) {
                 ex.getMessage();
             }
