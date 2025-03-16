@@ -3,27 +3,26 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
-import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageMedia;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.media.InputMedia;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class Bot extends TelegramLongPollingBot {
     //Map для хранения товаров каждого клиента
     //private HashMap<Long, >
+    //URL категории жидкого коллагена
+    private String urlWebPageWithLiquidCategoryCollagen = "https://kollagen.life/product-category/pitevoj-kollagen";
+    //Путь к файлу с html-кодом 
+    private String pathToFileWithHtmlCode = "src/main/resources/data/htmlCodeWebPage.html";
 
     //Кнопка для добавления товара в корзину
     private InlineKeyboardButton buttonForAddCollagenInBasket = InlineKeyboardButton.builder()
@@ -165,7 +164,7 @@ public class Bot extends TelegramLongPollingBot {
                 editMessageText.setText("Питьевой коллаген");
                 editMessageReplyMarkup.setReplyMarkup(keyboardForButtonForLiquidCollagen);
             } else if (callbackData.equals(buttonForСollagenDHC12000.getCallbackData())) {
-                int currentPriceCollagen = forWorkWithHtmlCodeWebPage(buttonForСollagenDHC12000.getText());
+                int currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenDHC12000.getText(), urlWebPageWithLiquidCategoryCollagen);
                 sendPhoto.setCaption(buttonForСollagenDHC12000.getText() + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/dhc12000.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
@@ -197,13 +196,10 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-    public int forWorkWithHtmlCodeWebPage(String captionCollagen) {
+    public int forGetPriceCollagenWithSelectedCategory(String captionCollagen, String urlWebPageWithCategoryCollagen) {
         int priceCollagen = 0;
-
-        String urlWebPage = "https://kollagen.life/product-category/pitevoj-kollagen";
-        String pathToFileWithHtmlCode = "src/main/resources/data/htmlCodeWebPage.html";
         try {
-            Document document = Jsoup.connect(urlWebPage).get();
+            Document document = Jsoup.connect(urlWebPageWithLiquidCategoryCollagen).get();
             String strHtmlCode = String.valueOf(document);
 
             FileWriter fileWriter = new FileWriter(pathToFileWithHtmlCode);
