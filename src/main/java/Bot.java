@@ -14,15 +14,20 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 
 import java.io.File;
 import java.io.FileWriter;
+import java.util.HashMap;
 import java.util.List;
 
 public class Bot extends TelegramLongPollingBot {
     //Map для хранения товаров каждого клиента
-    //private HashMap<Long, >
+    private static HashMap<Long, Collagen> mapCollagen = new HashMap<>();
     //URL категории жидкого коллагена
     private String urlWebPageWithLiquidCategoryCollagen = "https://kollagen.life/product-category/pitevoj-kollagen";
     //Путь к файлу с html-кодом 
     private String pathToFileWithHtmlCode = "src/main/resources/data/htmlCodeWebPage.html";
+    //Название текущего коллагена
+    String currentNameCollagen = "";
+    //Цена текущего коллагена
+    int currentPriceCollagen = 0;
 
     //Кнопка для добавления товара в корзину
     private InlineKeyboardButton buttonForAddCollagenInBasket = InlineKeyboardButton.builder()
@@ -135,7 +140,7 @@ public class Bot extends TelegramLongPollingBot {
     public void forWorkWithButtons(Update update) {
         if (update.hasCallbackQuery()) {
             String callbackData = update.getCallbackQuery().getData();
-            String chatId = update.getCallbackQuery().getMessage().getChatId().toString();
+            Long chatId = update.getCallbackQuery().getMessage().getChatId();
             Integer messageId = update.getCallbackQuery().getMessage().getMessageId();
 
             //Для отправки текста
@@ -164,8 +169,9 @@ public class Bot extends TelegramLongPollingBot {
                 editMessageText.setText("Питьевой коллаген");
                 editMessageReplyMarkup.setReplyMarkup(keyboardForButtonForLiquidCollagen);
             } else if (callbackData.equals(buttonForСollagenDHC12000.getCallbackData())) {
-                int currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenDHC12000.getText(), urlWebPageWithLiquidCategoryCollagen);
-                sendPhoto.setCaption(buttonForСollagenDHC12000.getText() + " за " + currentPriceCollagen + " руб.");
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenDHC12000.getText(), urlWebPageWithLiquidCategoryCollagen);
+                currentNameCollagen = buttonForСollagenDHC12000.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/dhc12000.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             }
@@ -177,6 +183,11 @@ public class Bot extends TelegramLongPollingBot {
             String caption = strSendPhoto.substring(leftIndexForCaption, rightIndexForCaption);
             String availablePhoto = caption.equals("null") ? "да" : "нет";
             System.out.println("Наличие фотографии: " + availablePhoto);
+            if (callbackData.equals(buttonForAddCollagenInBasket.getCallbackData())) {
+                Collagen currentCollagen = new Collagen(currentNameCollagen, currentPriceCollagen);
+                System.out.println(currentCollagen);
+                mapCollagen.put(chatId, currentCollagen);
+            }
             try {
                 if (!caption.equals("null")) {
                     execute(sendPhoto);
