@@ -1,5 +1,7 @@
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -163,15 +165,14 @@ public class Bot extends TelegramLongPollingBot {
                 editMessageText.setText("Питьевой коллаген");
                 editMessageReplyMarkup.setReplyMarkup(keyboardForButtonForLiquidCollagen);
             } else if (callbackData.equals(buttonForСollagenDHC12000.getCallbackData())) {
-                getHtmlCodeWebPage();
-                String price = "9200 руб.";
-                sendPhoto.setCaption(buttonForСollagenDHC12000.getText() + " за " + price);
+                int currentPriceCollagen = forWorkWithHtmlCodeWebPage(buttonForСollagenDHC12000.getText());
+                sendPhoto.setCaption(buttonForСollagenDHC12000.getText() + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/dhc12000.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             }
 
             String strSendPhoto = String.valueOf(sendPhoto);
-            System.out.println("Send photo: "+ strSendPhoto);
+            System.out.println("Send photo: " + strSendPhoto);
             int leftIndexForCaption = strSendPhoto.indexOf("caption=") + "caption=".length();
             int rightIndexForCaption = strSendPhoto.indexOf(",", leftIndexForCaption);
             String caption = strSendPhoto.substring(leftIndexForCaption, rightIndexForCaption);
@@ -196,7 +197,9 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-    public void getHtmlCodeWebPage() {
+    public int forWorkWithHtmlCodeWebPage(String captionCollagen) {
+        int priceCollagen = 0;
+
         String urlWebPage = "https://kollagen.life/product-category/pitevoj-kollagen";
         String pathToFileWithHtmlCode = "src/main/resources/data/htmlCodeWebPage.html";
         try {
@@ -205,9 +208,28 @@ public class Bot extends TelegramLongPollingBot {
 
             FileWriter fileWriter = new FileWriter(pathToFileWithHtmlCode);
             fileWriter.write(strHtmlCode);
+
+            Elements elements = document.select(".jet-woo-products__item");
+            for (Element currentElement : elements) {
+                String strCurrentElement = String.valueOf(currentElement).strip();
+                if (strCurrentElement.contains(captionCollagen)) {
+                    String templatePriceCollagen = captionCollagen + "</a></h2>\n" +
+                            "  <div class=\"jet-woo-product-price\">\n" +
+                            "   <span class=\"woocommerce-Price-amount amount\"><bdi>";
+                    int leftIndexForPriceCollagen = strCurrentElement.indexOf(templatePriceCollagen);
+                    if (leftIndexForPriceCollagen != -1) {
+                        leftIndexForPriceCollagen += templatePriceCollagen.length();
+                        int rightIndexForPriceCollagen = strCurrentElement.indexOf("&nbsp;");
+                        String strPriceCollagen = strCurrentElement.substring(leftIndexForPriceCollagen, rightIndexForPriceCollagen).replaceAll(",", "");
+                        priceCollagen = Integer.parseInt(strPriceCollagen);
+                        return priceCollagen;
+                    }
+                }
+            }
         } catch (Exception ex) {
             ex.getMessage();
         }
+        return priceCollagen;
     }
 
     @Override
