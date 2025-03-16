@@ -1,19 +1,28 @@
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageMedia;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.media.InputMedia;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Bot extends TelegramLongPollingBot {
+    //Map для хранения товаров каждого клиента
+    //private HashMap<Long, >
+
     //Кнопка для добавления товара в корзину
     private InlineKeyboardButton buttonForAddCollagenInBasket = InlineKeyboardButton.builder()
             .text("Добавить в корзину")
@@ -81,7 +90,7 @@ public class Bot extends TelegramLongPollingBot {
 
     //Кнопка для коллагена DHC 12000mg
     private InlineKeyboardButton buttonForСollagenDHC12000 = InlineKeyboardButton.builder()
-            .text("Жидкий коллаген DHC 12000mg")
+            .text("DHC коллаген 12000mg питьевой 50 мл x 10")
             .callbackData("жидкий коллаген DHC 12000mg")
             .build();
     //Клавиатура для кнопки для коллагена DHC 12000mg
@@ -154,32 +163,50 @@ public class Bot extends TelegramLongPollingBot {
                 editMessageText.setText("Питьевой коллаген");
                 editMessageReplyMarkup.setReplyMarkup(keyboardForButtonForLiquidCollagen);
             } else if (callbackData.equals(buttonForСollagenDHC12000.getCallbackData())) {
-                sendPhoto.setCaption(buttonForСollagenDHC12000.getText());
+                getHtmlCodeWebPage();
+                String price = "9200 руб.";
+                sendPhoto.setCaption(buttonForСollagenDHC12000.getText() + " за " + price);
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/dhc12000.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             }
 
             String strSendPhoto = String.valueOf(sendPhoto);
+            System.out.println("Send photo: "+ strSendPhoto);
             int leftIndexForCaption = strSendPhoto.indexOf("caption=") + "caption=".length();
             int rightIndexForCaption = strSendPhoto.indexOf(",", leftIndexForCaption);
             String caption = strSendPhoto.substring(leftIndexForCaption, rightIndexForCaption);
-            System.out.println("Ну типо отсутствие назовухи фоточки: " + caption.equals("null"));
+            String availablePhoto = caption.equals("null") ? "да" : "нет";
+            System.out.println("Наличие фотографии: " + availablePhoto);
             try {
                 if (!caption.equals("null")) {
                     execute(sendPhoto);
                     System.out.println("Отправка фотки");
                 }
+
                 execute(editMessageText);
                 System.out.println("Отправка текста");
 
                 execute(editMessageReplyMarkup);
                 System.out.println("Отправка клавы");
 
-
                 System.out.println("Все отправления прошли!\n");
             } catch (Exception ex) {
                 ex.getMessage();
             }
+        }
+    }
+
+    public void getHtmlCodeWebPage() {
+        String urlWebPage = "https://kollagen.life/product-category/pitevoj-kollagen";
+        String pathToFileWithHtmlCode = "src/main/resources/data/htmlCodeWebPage.html";
+        try {
+            Document document = Jsoup.connect(urlWebPage).get();
+            String strHtmlCode = String.valueOf(document);
+
+            FileWriter fileWriter = new FileWriter(pathToFileWithHtmlCode);
+            fileWriter.write(strHtmlCode);
+        } catch (Exception ex) {
+            ex.getMessage();
         }
     }
 
