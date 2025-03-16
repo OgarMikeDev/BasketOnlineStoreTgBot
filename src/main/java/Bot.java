@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Bot extends TelegramLongPollingBot {
     //Map для хранения товаров каждого клиента
@@ -174,6 +175,15 @@ public class Bot extends TelegramLongPollingBot {
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/dhc12000.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForMyBasket.getCallbackData())) {
+                StringBuilder builderForMapCollagen = new StringBuilder();
+                for (Map.Entry<Long, Collagen> chatIdAndCollagen : mapCollagen.entrySet()) {
+                    Long currentChatId = chatIdAndCollagen.getKey();
+                    Collagen currentCollagen = chatIdAndCollagen.getValue();
+                    if (chatId.equals(currentChatId)) {
+                        editMessageText.setText("Добавленные в корзину товары:\n" + currentCollagen);
+                    }
+                }
             }
 
             String strSendPhoto = String.valueOf(sendPhoto);
