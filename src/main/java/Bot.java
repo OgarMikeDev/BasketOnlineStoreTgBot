@@ -43,7 +43,7 @@ public class Bot extends TelegramLongPollingBot {
     //Клавиатура для кнопки для добавления товара в корзину
     private InlineKeyboardMarkup keyboardForButtonForAddCollagenInBasket = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForAddCollagenInBasket))
-            .keyboardRow(List.of(buttonForReturnBack))
+            //.keyboardRow(List.of(buttonForReturnBack))
             .build();
 
     //Кнопка для запуска тг-бота
@@ -176,7 +176,6 @@ public class Bot extends TelegramLongPollingBot {
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/dhc12000.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             } else if (callbackData.equals(buttonForMyBasket.getCallbackData())) {
-                StringBuilder builderForMapCollagen = new StringBuilder();
                 for (Map.Entry<Long, Collagen> chatIdAndCollagen : mapCollagen.entrySet()) {
                     Long currentChatId = chatIdAndCollagen.getKey();
                     Collagen currentCollagen = chatIdAndCollagen.getValue();
@@ -191,7 +190,7 @@ public class Bot extends TelegramLongPollingBot {
             int leftIndexForCaption = strSendPhoto.indexOf("caption=") + "caption=".length();
             int rightIndexForCaption = strSendPhoto.indexOf(",", leftIndexForCaption);
             String caption = strSendPhoto.substring(leftIndexForCaption, rightIndexForCaption);
-            String availablePhoto = caption.equals("null") ? "да" : "нет";
+            String availablePhoto = caption.equals("null") ? "нет" : "да";
             System.out.println("Наличие фотографии: " + availablePhoto);
             if (callbackData.equals(buttonForAddCollagenInBasket.getCallbackData())) {
                 Collagen currentCollagen = new Collagen(currentNameCollagen, currentPriceCollagen);
