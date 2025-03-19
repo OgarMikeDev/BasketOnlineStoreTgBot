@@ -43,6 +43,7 @@ public class Bot extends TelegramLongPollingBot {
     //Клавиатура для кнопки для добавления товара в корзину
     private InlineKeyboardMarkup keyboardForButtonForAddCollagenInBasket = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForAddCollagenInBasket))
+            .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
     //Кнопка для запуска тг-бота
@@ -69,7 +70,6 @@ public class Bot extends TelegramLongPollingBot {
     private InlineKeyboardMarkup keyboardForButtonForGetListItems = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForGetListItems))
             .keyboardRow(List.of(buttonForMyBasket))
-            .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
     //Кнопка для категории жидкого коллагена
