@@ -100,9 +100,15 @@ public class Bot extends TelegramLongPollingBot {
             .text("DHC коллаген 12000mg питьевой 50 мл x 10")
             .callbackData("жидкий коллаген DHC 12000mg")
             .build();
+    //Кнопка для коллагена DHC 12000mg
+    private InlineKeyboardButton buttonForСollagenShiseidoRelacle = InlineKeyboardButton.builder()
+            .text("Collagen Shiseido Relacle желе")
+            .callbackData("collagen Shiseido Relacle желе")
+            .build();
     //Клавиатура для кнопки для коллагена DHC 12000mg
     private InlineKeyboardMarkup keyboardForButtonForLiquidCollagen = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForСollagenDHC12000))
+            .keyboardRow(List.of(buttonForСollagenShiseidoRelacle))
             .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
@@ -172,15 +178,23 @@ public class Bot extends TelegramLongPollingBot {
             } else if (callbackData.equals(buttonForСollagenDHC12000.getCallbackData())) {
                 currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenDHC12000.getText(), urlWebPageWithLiquidCategoryCollagen);
                 currentNameCollagen = buttonForСollagenDHC12000.getText();
+                Collagen currentCollagen = new Collagen(currentNameCollagen, currentPriceCollagen);
+                mapCollagen.put(chatId, currentCollagen);
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/dhc12000.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenShiseidoRelacle.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenShiseidoRelacle.getText(), urlWebPageWithLiquidCategoryCollagen);
+                currentNameCollagen = buttonForСollagenShiseidoRelacle.getText();
+                Collagen currentCollagen = new Collagen(currentNameCollagen, currentPriceCollagen);
+                mapCollagen.put(chatId, currentCollagen);
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/heseido_relacle_collagen_pitevoy.jpg")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             } else if (callbackData.equals(buttonForMyBasket.getCallbackData())) {
-                for (Map.Entry<Long, Collagen> chatIdAndCollagen : mapCollagen.entrySet()) {
-                    Long currentChatId = chatIdAndCollagen.getKey();
-                    Collagen currentCollagen = chatIdAndCollagen.getValue();
-                    if (chatId.equals(currentChatId)) {
-                        editMessageText.setText("Добавленные в корзину товары:\n" + currentCollagen);
+                for (Map.Entry<Long, Collagen> allCollagen : mapCollagen.entrySet()) {
+                    if (allCollagen.getKey().equals(chatId)) {
+                        editMessageText.setText("Вывод всех товаров: " + allCollagen.getValue());
                     }
                 }
             }
@@ -194,8 +208,6 @@ public class Bot extends TelegramLongPollingBot {
             System.out.println("Наличие фотографии: " + availablePhoto);
             if (callbackData.equals(buttonForAddCollagenInBasket.getCallbackData())) {
                 Collagen currentCollagen = new Collagen(currentNameCollagen, currentPriceCollagen);
-                System.out.println(currentCollagen);
-                mapCollagen.put(chatId, currentCollagen);
             }
             try {
                 if (!caption.equals("null")) {
@@ -222,29 +234,27 @@ public class Bot extends TelegramLongPollingBot {
             Document document = Jsoup.connect(urlWebPageWithLiquidCategoryCollagen).get();
             String strHtmlCode = String.valueOf(document);
 
-            FileWriter fileWriter = new FileWriter(pathToFileWithHtmlCode);
-            fileWriter.write(strHtmlCode);
-
-            Elements elements = document.select(".jet-woo-products__item");
+            Elements elements = document.select(".jet-woo-products__inner-box");
             for (Element currentElement : elements) {
                 String strCurrentElement = String.valueOf(currentElement).strip();
-                if (strCurrentElement.contains(captionCollagen)) {
-                    String templatePriceCollagen = captionCollagen + "</a></h2>\n" +
-                            "  <div class=\"jet-woo-product-price\">\n" +
-                            "   <span class=\"woocommerce-Price-amount amount\"><bdi>";
-                    int leftIndexForPriceCollagen = strCurrentElement.indexOf(templatePriceCollagen);
-                    if (leftIndexForPriceCollagen != -1) {
-                        leftIndexForPriceCollagen += templatePriceCollagen.length();
-                        int rightIndexForPriceCollagen = strCurrentElement.indexOf("&nbsp;");
-                        String strPriceCollagen = strCurrentElement.substring(leftIndexForPriceCollagen, rightIndexForPriceCollagen).replaceAll(",", "");
-                        priceCollagen = Integer.parseInt(strPriceCollagen);
-                        return priceCollagen;
-                    }
+                String templateForPrice = captionCollagen + "</a></h2>\n" +
+                        " <div class=\"jet-woo-product-price\">\n" +
+                        "  <span class=\"woocommerce-Price-amount amount\"><bdi>";
+                int leftIndexForPrice = strCurrentElement.indexOf(templateForPrice);
+                if (leftIndexForPrice != -1) {
+                    leftIndexForPrice += templateForPrice.length();
+                    int rightIndexForPrice = strCurrentElement.indexOf("&", leftIndexForPrice);
+                    String strPrice = strCurrentElement.substring(leftIndexForPrice, rightIndexForPrice).replace(",", "");
+                    priceCollagen = Integer.parseInt(strPrice);
                 }
             }
+
+            FileWriter fileWriter = new FileWriter(pathToFileWithHtmlCode);
+            fileWriter.write(strHtmlCode);
         } catch (Exception ex) {
             ex.getMessage();
         }
+        System.out.println("Цена коллагена - " + priceCollagen);
         return priceCollagen;
     }
 
