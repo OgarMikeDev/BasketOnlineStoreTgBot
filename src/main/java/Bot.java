@@ -106,10 +106,16 @@ public class Bot extends TelegramLongPollingBot {
             .text("Collagen Shiseido Relacle желе")
             .callbackData("collagen Shiseido Relacle желе")
             .build();
+    //Кнопка для коллагена BLACKMORES Collagen
+    private InlineKeyboardButton buttonForСollagenBLACKMORES = InlineKeyboardButton.builder()
+            .text("BLACKMORES Collagen питьевой 10 x 60 ml")
+            .callbackData("drink BLACKMORES")
+            .build();
     //Клавиатура для кнопки для коллагена DHC 12000mg
     private InlineKeyboardMarkup keyboardForButtonForLiquidCollagen = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForСollagenDHC12000))
             .keyboardRow(List.of(buttonForСollagenShiseidoRelacle))
+            .keyboardRow(List.of(buttonForСollagenBLACKMORES))
             .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
@@ -187,6 +193,12 @@ public class Bot extends TelegramLongPollingBot {
                 currentNameCollagen = buttonForСollagenShiseidoRelacle.getText();
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/heseido_relacle_collagen_pitevoy.jpg")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenBLACKMORES.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenBLACKMORES.getText(), urlWebPageWithLiquidCategoryCollagen);
+                currentNameCollagen = buttonForСollagenBLACKMORES.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/BLACKMORES.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             } else if (callbackData.equals(buttonForMyBasket.getCallbackData())) {
                 for (Map.Entry<Long, List<Collagen>> allCollagen : mapCollagen.entrySet()) {
