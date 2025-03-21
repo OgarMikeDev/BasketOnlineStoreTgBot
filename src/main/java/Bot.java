@@ -148,11 +148,17 @@ public class Bot extends TelegramLongPollingBot {
             .text("Fancl Deep Charge collagen в порошке")
             .callbackData("fancl Deep Charge collagen")
             .build();
+    //Кнопка для коллагена Fine Japan Hyaluron & Collagen и коэнзим Q10
+    private InlineKeyboardButton buttonForСollagenFineJapanHyaluronCollagenQ10 = InlineKeyboardButton.builder()
+            .text("Fine Japan Hyaluron &amp; Collagen и коэнзим Q10")
+            .callbackData("fine Japan Hyaluron")
+            .build();
     //Клавиатура для кнопки для коллагена DHC 12000mg
     private InlineKeyboardMarkup keyboardForButtonForPowderCollagen = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForСollagenNichie100))
             .keyboardRow(List.of(buttonForСollagenDHC5000))
             .keyboardRow(List.of(buttonForСollagenFanclDeepCharge))
+            .keyboardRow(List.of(buttonForСollagenFineJapanHyaluronCollagenQ10))
             .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
@@ -269,6 +275,12 @@ public class Bot extends TelegramLongPollingBot {
                 currentNameCollagen = buttonForСollagenFanclDeepCharge.getText();
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/fancl-deep-charge.jpg")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenFineJapanHyaluronCollagenQ10.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenFineJapanHyaluronCollagenQ10.getText(), urlWebPageWithPowderCategoryCollagen);
+                currentNameCollagen = buttonForСollagenFineJapanHyaluronCollagenQ10.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/Fine.webp")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             } else if (callbackData.equals(buttonForMyBasket.getCallbackData())) {
                 for (Map.Entry<Long, List<Collagen>> allCollagen : mapCollagen.entrySet()) {
