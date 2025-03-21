@@ -24,6 +24,8 @@ public class Bot extends TelegramLongPollingBot {
     private static HashMap<Long, List<Collagen>> mapCollagen = new HashMap<>();
     //URL категории жидкого коллагена
     private String urlWebPageWithLiquidCategoryCollagen = "https://kollagen.life/product-category/pitevoj-kollagen";
+    //URL категории порошкового коллагена
+    private String urlWebPageWithPowderCategoryCollagen = "https://kollagen.life/product-category/kollagen-v-poroshke";
     //Путь к файлу с html-кодом 
     private String pathToFileWithHtmlCode = "src/main/resources/data/htmlCodeWebPage.html";
     //Название текущего коллагена
@@ -244,13 +246,13 @@ public class Bot extends TelegramLongPollingBot {
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/DHC-nano-active-collagen-new1.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             } else if (callbackData.equals(buttonForСollagenNichie100.getCallbackData())) {
-                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenNichie100.getText(), urlWebPageWithLiquidCategoryCollagen);
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenNichie100.getText(), urlWebPageWithPowderCategoryCollagen);
                 currentNameCollagen = buttonForСollagenNichie100.getText();
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/nichie-new-pack.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             } else if (callbackData.equals(buttonForСollagenDHC5000.getCallbackData())) {
-                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenDHC5000.getText(), urlWebPageWithLiquidCategoryCollagen);
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenDHC5000.getText(), urlWebPageWithPowderCategoryCollagen);
                 currentNameCollagen = buttonForСollagenDHC5000.getText();
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/DHC коллаген 5000mg порошок.png")));
@@ -305,7 +307,7 @@ public class Bot extends TelegramLongPollingBot {
     public int forGetPriceCollagenWithSelectedCategory(String captionCollagen, String urlWebPageWithCategoryCollagen) {
         int priceCollagen = 0;
         try {
-            Document document = Jsoup.connect(urlWebPageWithLiquidCategoryCollagen).get();
+            Document document = Jsoup.connect(urlWebPageWithCategoryCollagen).get();
             String strHtmlCode = String.valueOf(document);
 
             Elements elements = document.select(".jet-woo-products__inner-box");
