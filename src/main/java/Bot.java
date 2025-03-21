@@ -303,11 +303,11 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "@search_developers_tg_bot";
+        return "@basket_online_store_tg_bot";
     }
 
     @Override
     public String getBotToken() {
-        return "7806725187:AAHXVzQtp7zR7PKhr1OKd5ev7FdWvVi5IlI";
+        return "7785069816:AAGsxaM_rYQLCC3mW-j-QIj5qBrIM576GRQ";
     }
 }
