@@ -14,13 +14,14 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 
 import java.io.File;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Bot extends TelegramLongPollingBot {
     //Map для хранения товаров каждого клиента
-    private static HashMap<Long, Collagen> mapCollagen = new HashMap<>();
+    private static HashMap<Long, List<Collagen>> mapCollagen = new HashMap<>();
     //URL категории жидкого коллагена
     private String urlWebPageWithLiquidCategoryCollagen = "https://kollagen.life/product-category/pitevoj-kollagen";
     //Путь к файлу с html-кодом 
@@ -178,21 +179,17 @@ public class Bot extends TelegramLongPollingBot {
             } else if (callbackData.equals(buttonForСollagenDHC12000.getCallbackData())) {
                 currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenDHC12000.getText(), urlWebPageWithLiquidCategoryCollagen);
                 currentNameCollagen = buttonForСollagenDHC12000.getText();
-                Collagen currentCollagen = new Collagen(currentNameCollagen, currentPriceCollagen);
-                mapCollagen.put(chatId, currentCollagen);
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/dhc12000.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             } else if (callbackData.equals(buttonForСollagenShiseidoRelacle.getCallbackData())) {
                 currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenShiseidoRelacle.getText(), urlWebPageWithLiquidCategoryCollagen);
                 currentNameCollagen = buttonForСollagenShiseidoRelacle.getText();
-                Collagen currentCollagen = new Collagen(currentNameCollagen, currentPriceCollagen);
-                mapCollagen.put(chatId, currentCollagen);
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/heseido_relacle_collagen_pitevoy.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             } else if (callbackData.equals(buttonForMyBasket.getCallbackData())) {
-                for (Map.Entry<Long, Collagen> allCollagen : mapCollagen.entrySet()) {
+                for (Map.Entry<Long, List<Collagen>> allCollagen : mapCollagen.entrySet()) {
                     if (allCollagen.getKey().equals(chatId)) {
                         editMessageText.setText("Вывод всех товаров: " + allCollagen.getValue());
                     }
@@ -208,6 +205,16 @@ public class Bot extends TelegramLongPollingBot {
             System.out.println("Наличие фотографии: " + availablePhoto);
             if (callbackData.equals(buttonForAddCollagenInBasket.getCallbackData())) {
                 Collagen currentCollagen = new Collagen(currentNameCollagen, currentPriceCollagen);
+                List<Collagen> listCollagen = mapCollagen.get(chatId);
+                if (listCollagen == null) {
+                    listCollagen = new ArrayList<>();
+                    listCollagen.add(new Collagen(currentNameCollagen, currentPriceCollagen));
+                    mapCollagen.put(chatId, listCollagen);
+                } else {
+                    listCollagen = mapCollagen.get(chatId);
+                    listCollagen.add(currentCollagen);
+                    mapCollagen.put(chatId, listCollagen);
+                }
             }
             try {
                 if (!caption.equals("null")) {
@@ -260,11 +267,11 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "@basket_online_store_tg_bot";
+        return "@search_developers_tg_bot";
     }
 
     @Override
     public String getBotToken() {
-        return "7785069816:AAGsxaM_rYQLCC3mW-j-QIj5qBrIM576GRQ";
+        return "7806725187:AAHXVzQtp7zR7PKhr1OKd5ev7FdWvVi5IlI";
     }
 }
