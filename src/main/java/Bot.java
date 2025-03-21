@@ -111,11 +111,23 @@ public class Bot extends TelegramLongPollingBot {
             .text("BLACKMORES Collagen питьевой 10 x 60 ml")
             .callbackData("drink BLACKMORES")
             .build();
+    //Кнопка для коллагена DHC коллаген 9000mg
+    private InlineKeyboardButton buttonForСollagenDHC9000Plus = InlineKeyboardButton.builder()
+            .text("DHC коллаген 9000mg Plus тетра пак 125 мл x 15")
+            .callbackData("drink DHC 9000")
+            .build();
+    //Кнопка для коллагена DHC нано активного
+    private InlineKeyboardButton buttonForСollagenDHCNanoActive = InlineKeyboardButton.builder()
+            .text("DHC нано активный коллаген рыбий")
+            .callbackData("нано активный коллаген рыбий DHC")
+            .build();
     //Клавиатура для кнопки для коллагена DHC 12000mg
     private InlineKeyboardMarkup keyboardForButtonForLiquidCollagen = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForСollagenDHC12000))
             .keyboardRow(List.of(buttonForСollagenShiseidoRelacle))
             .keyboardRow(List.of(buttonForСollagenBLACKMORES))
+            .keyboardRow(List.of(buttonForСollagenDHC9000Plus))
+            .keyboardRow(List.of(buttonForСollagenDHCNanoActive))
             .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
@@ -199,6 +211,18 @@ public class Bot extends TelegramLongPollingBot {
                 currentNameCollagen = buttonForСollagenBLACKMORES.getText();
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/BLACKMORES.jpg")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenDHC9000Plus.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenDHC9000Plus.getText(), urlWebPageWithLiquidCategoryCollagen);
+                currentNameCollagen = buttonForСollagenDHC9000Plus.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/DHC-Collagen-Beauty-9000-Plus-tetra.jpg")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenDHCNanoActive.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenDHCNanoActive.getText(), urlWebPageWithLiquidCategoryCollagen);
+                currentNameCollagen = buttonForСollagenDHCNanoActive.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/DHC-nano-active-collagen-new1.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             } else if (callbackData.equals(buttonForMyBasket.getCallbackData())) {
                 for (Map.Entry<Long, List<Collagen>> allCollagen : mapCollagen.entrySet()) {
