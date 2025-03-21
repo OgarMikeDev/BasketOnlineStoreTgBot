@@ -143,12 +143,19 @@ public class Bot extends TelegramLongPollingBot {
             .text("DHC коллаген 5000mg порошок")
             .callbackData("5000 DHC")
             .build();
+    //Кнопка для коллагена Fancl Deep Charge collagen в порошке
+    private InlineKeyboardButton buttonForСollagenFanclDeepCharge = InlineKeyboardButton.builder()
+            .text("Fancl Deep Charge collagen в порошке")
+            .callbackData("fancl Deep Charge collagen")
+            .build();
     //Клавиатура для кнопки для коллагена DHC 12000mg
     private InlineKeyboardMarkup keyboardForButtonForPowderCollagen = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForСollagenNichie100))
             .keyboardRow(List.of(buttonForСollagenDHC5000))
+            .keyboardRow(List.of(buttonForСollagenFanclDeepCharge))
             .keyboardRow(List.of(buttonForReturnBack))
             .build();
+
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -257,6 +264,12 @@ public class Bot extends TelegramLongPollingBot {
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/DHC коллаген 5000mg порошок.png")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenFanclDeepCharge.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenFanclDeepCharge.getText(), urlWebPageWithPowderCategoryCollagen);
+                currentNameCollagen = buttonForСollagenFanclDeepCharge.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/fancl-deep-charge.jpg")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             } else if (callbackData.equals(buttonForMyBasket.getCallbackData())) {
                 for (Map.Entry<Long, List<Collagen>> allCollagen : mapCollagen.entrySet()) {
                     if (allCollagen.getKey().equals(chatId)) {
@@ -336,11 +349,11 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "@basket_online_store_tg_bot";
+        return "@DanyaTelegaBot";
     }
 
     @Override
     public String getBotToken() {
-        return "7785069816:AAGsxaM_rYQLCC3mW-j-QIj5qBrIM576GRQ";
+        return "8156567979:AAFxp-e0B-aVpxJUlNsGOJGYUS_I0wZP01g";
     }
 }
