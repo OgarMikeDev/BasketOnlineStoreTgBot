@@ -131,14 +131,20 @@ public class Bot extends TelegramLongPollingBot {
             .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
-    //Кнопка для коллагена DHC нано активного
+    //Кнопка для коллагена Nichie 100%
     private InlineKeyboardButton buttonForСollagenNichie100 = InlineKeyboardButton.builder()
             .text("100% рыбий коллаген пептид Nichie")
             .callbackData("пептид Nichie")
             .build();
+    //Кнопка для коллагена DHC 5000mg
+    private InlineKeyboardButton buttonForСollagenDHC5000 = InlineKeyboardButton.builder()
+            .text("DHC коллаген 5000mg порошок")
+            .callbackData("5000 DHC")
+            .build();
     //Клавиатура для кнопки для коллагена DHC 12000mg
     private InlineKeyboardMarkup keyboardForButtonForPowderCollagen = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForСollagenNichie100))
+            .keyboardRow(List.of(buttonForСollagenDHC5000))
             .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
@@ -242,6 +248,12 @@ public class Bot extends TelegramLongPollingBot {
                 currentNameCollagen = buttonForСollagenNichie100.getText();
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/nichie-new-pack.jpg")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenDHC5000.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenDHC5000.getText(), urlWebPageWithLiquidCategoryCollagen);
+                currentNameCollagen = buttonForСollagenDHC5000.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/DHC коллаген 5000mg порошок.png")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             } else if (callbackData.equals(buttonForMyBasket.getCallbackData())) {
                 for (Map.Entry<Long, List<Collagen>> allCollagen : mapCollagen.entrySet()) {
