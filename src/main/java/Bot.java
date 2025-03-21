@@ -131,6 +131,16 @@ public class Bot extends TelegramLongPollingBot {
             .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
+    //Кнопка для коллагена DHC нано активного
+    private InlineKeyboardButton buttonForСollagenNichie100 = InlineKeyboardButton.builder()
+            .text("100% рыбий коллаген пептид Nichie")
+            .callbackData("пептид Nichie")
+            .build();
+    //Клавиатура для кнопки для коллагена DHC 12000mg
+    private InlineKeyboardMarkup keyboardForButtonForPowderCollagen = InlineKeyboardMarkup.builder()
+            .keyboardRow(List.of(buttonForСollagenNichie100))
+            .keyboardRow(List.of(buttonForReturnBack))
+            .build();
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -194,6 +204,9 @@ public class Bot extends TelegramLongPollingBot {
             } else if (callbackData.equals(buttonForLiquidCollagen.getCallbackData())) {
                 editMessageText.setText("Питьевой коллаген");
                 editMessageReplyMarkup.setReplyMarkup(keyboardForButtonForLiquidCollagen);
+            } else if (callbackData.equals(buttonForPowderCollagen.getCallbackData())) {
+                editMessageText.setText("Коллаген в порошке");
+                editMessageReplyMarkup.setReplyMarkup(keyboardForButtonForPowderCollagen);
             } else if (callbackData.equals(buttonForСollagenDHC12000.getCallbackData())) {
                 currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenDHC12000.getText(), urlWebPageWithLiquidCategoryCollagen);
                 currentNameCollagen = buttonForСollagenDHC12000.getText();
@@ -223,6 +236,12 @@ public class Bot extends TelegramLongPollingBot {
                 currentNameCollagen = buttonForСollagenDHCNanoActive.getText();
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/DHC-nano-active-collagen-new1.jpg")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenNichie100.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenNichie100.getText(), urlWebPageWithLiquidCategoryCollagen);
+                currentNameCollagen = buttonForСollagenNichie100.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/nichie-new-pack.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             } else if (callbackData.equals(buttonForMyBasket.getCallbackData())) {
                 for (Map.Entry<Long, List<Collagen>> allCollagen : mapCollagen.entrySet()) {
