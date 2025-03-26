@@ -153,12 +153,18 @@ public class Bot extends TelegramLongPollingBot {
             .text("Fine Japan Hyaluron &amp; Collagen и коэнзим Q10")
             .callbackData("fine Japan Hyaluron")
             .build();
+    //Кнопка для коллагена Fine Japan Hyaluron & Collagen на 28 дней
+    private InlineKeyboardButton buttonForСollagenFineJapanHyaluronCollagen28 = InlineKeyboardButton.builder()
+            .text("Fine Japan Hyaluron &amp; Collagen на 28 дней")
+            .callbackData("fine Japan Hyaluron 28")
+            .build();
     //Клавиатура для кнопки для коллагена DHC 12000mg
     private InlineKeyboardMarkup keyboardForButtonForPowderCollagen = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForСollagenNichie100))
             .keyboardRow(List.of(buttonForСollagenDHC5000))
             .keyboardRow(List.of(buttonForСollagenFanclDeepCharge))
             .keyboardRow(List.of(buttonForСollagenFineJapanHyaluronCollagenQ10))
+            .keyboardRow(List.of(buttonForСollagenFineJapanHyaluronCollagen28))
             .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
@@ -282,6 +288,12 @@ public class Bot extends TelegramLongPollingBot {
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/Fine.webp")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenFineJapanHyaluronCollagen28.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenFineJapanHyaluronCollagen28.getText(), urlWebPageWithPowderCategoryCollagen);
+                currentNameCollagen = buttonForСollagenFineJapanHyaluronCollagen28.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/xCollagen-fine-gold-hyaluron-and-collagen-can1-300x300.jpg.pagespeed.ic.UF76UORtGX.jpg")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             } else if (callbackData.equals(buttonForMyBasket.getCallbackData())) {
                 for (Map.Entry<Long, List<Collagen>> allCollagen : mapCollagen.entrySet()) {
                     if (allCollagen.getKey().equals(chatId)) {
@@ -361,11 +373,11 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "@DanyaTelegaBot";
+        return "@basket_online_store_tg_bot";
     }
 
     @Override
     public String getBotToken() {
-        return "8156567979:AAFxp-e0B-aVpxJUlNsGOJGYUS_I0wZP01g";
+        return "7785069816:AAGsxaM_rYQLCC3mW-j-QIj5qBrIM576GRQ";
     }
 }
