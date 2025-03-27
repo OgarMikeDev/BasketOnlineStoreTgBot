@@ -672,11 +672,20 @@ public class Bot extends TelegramLongPollingBot {
                 String templateForPrice = captionCollagen + "</a></h2>\n" +
                         " <div class=\"jet-woo-product-price\">\n" +
                         "  <span class=\"woocommerce-Price-amount amount\"><bdi>";
+                String secondTemplateForPrice = captionCollagen + "</a></h2>\n" +
+                        " <div class=\"jet-woo-product-price\">\n" +
+                        "  <del aria-hidden=\"true\"><span class=\"woocommerce-Price-amount amount\"><bdi>";
                 int leftIndexForPrice = strCurrentElement.indexOf(templateForPrice);
+                int secondLeftIndexForPrice = strCurrentElement.indexOf(secondTemplateForPrice);
                 if (leftIndexForPrice != -1) {
                     leftIndexForPrice += templateForPrice.length();
                     int rightIndexForPrice = strCurrentElement.indexOf("&", leftIndexForPrice);
                     String strPrice = strCurrentElement.substring(leftIndexForPrice, rightIndexForPrice).replace(",", "");
+                    priceCollagen = Integer.parseInt(strPrice);
+                } else if (secondLeftIndexForPrice != -1) {
+                    secondLeftIndexForPrice += secondTemplateForPrice.length();
+                    int rightIndexForPrice = strCurrentElement.indexOf("&", secondLeftIndexForPrice);
+                    String strPrice = strCurrentElement.substring(secondLeftIndexForPrice, rightIndexForPrice).replace(",", "");
                     priceCollagen = Integer.parseInt(strPrice);
                 }
             }
