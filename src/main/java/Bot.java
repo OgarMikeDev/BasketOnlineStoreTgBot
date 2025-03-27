@@ -488,6 +488,12 @@ public class Bot extends TelegramLongPollingBot {
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/xCollagen-fine-gold-hyaluron-and-collagen-can1-300x300.jpg.pagespeed.ic.UF76UORtGX.jpg")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenMeijiAminoMatchaFlavor.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenMeijiAminoMatchaFlavor.getText(), urlWebPageWithPowderCategoryCollagen);
+                currentNameCollagen = buttonForСollagenMeijiAminoMatchaFlavor.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/Meiji Amino Collagen Matcha Flavor.webp")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             }
             //Коллаген в таблетках
             else if (callbackData.equals(buttonForСollagenAsahiDearNatura.getCallbackData())) {
