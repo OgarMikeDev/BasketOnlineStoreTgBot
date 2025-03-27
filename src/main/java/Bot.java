@@ -160,6 +160,101 @@ public class Bot extends TelegramLongPollingBot {
             .text("Fine Japan Hyaluron &amp; Collagen на 28 дней")
             .callbackData("fine Japan Hyaluron 28")
             .build();
+    //Кнопка для коллагена Meiji Amino Collagen Matcha Flavor
+    private InlineKeyboardButton buttonForСollagenMeijiAminoMatchaFlavor = InlineKeyboardButton.builder()
+            .text("Meiji Amino Collagen Matcha Flavor")
+            .callbackData("meiji Amino Matcha Flavor")
+            .build();
+    //Кнопка для коллагена Meiji Amino Collagen Men в порошке
+    private InlineKeyboardButton buttonForСollagenMeijiAminoMen = InlineKeyboardButton.builder()
+            .text("Meiji Amino Collagen Men в порошке")
+            .callbackData("meiji Amino Collagen Men")
+            .build();
+    //Кнопка для коллагена Meiji Amino Collagen порошок на 28 дней
+    private InlineKeyboardButton buttonForСollagenMeijiAmino28 = InlineKeyboardButton.builder()
+            .text("Meiji Amino Collagen порошок на 28 дней")
+            .callbackData("meiji Amino 28")
+            .build();
+    //Кнопка для коллагена Meiji Amino Collagen порошок на 30 дней в упаковке
+    private InlineKeyboardButton buttonForСollagenMeijiAmino30 = InlineKeyboardButton.builder()
+            .text("Meiji Amino Collagen порошок на 30 дней в упаковке")
+            .callbackData("meiji Amino 30")
+            .build();
+    //Кнопка для коллагена Meiji Amino Collagen с кальцием
+    private InlineKeyboardButton buttonForСollagenMeijiAminoCalcium = InlineKeyboardButton.builder()
+            .text("Meiji Amino Collagen с кальцием")
+            .callbackData("meiji Amino с кальцием")
+            .build();
+    //Кнопка для коллагена Meiji Premium Amino Collagen порошок на 28 дней
+    private InlineKeyboardButton buttonForСollagenMeijiAminoPremium28 = InlineKeyboardButton.builder()
+            .text("Meiji Premium Amino Collagen порошок на 28 дней")
+            .callbackData("meiji Premium Amino 28 дней")
+            .build();
+    //Кнопка для коллагена Meiji Premium Collagen порошок на 14 дней
+    private InlineKeyboardButton buttonForСollagenMeijiPremium14 = InlineKeyboardButton.builder()
+            .text("Meiji Premium Collagen порошок на 14 дней")
+            .callbackData("meiji Premium 14")
+            .build();
+    //Кнопка для коллагена Meiji Premium Collagen порошок на 30 дней в упаковке
+    private InlineKeyboardButton buttonForСollagenMeijiPremium30 = InlineKeyboardButton.builder()
+            .text("Meiji Premium Collagen порошок на 30 дней в упаковке")
+            .callbackData("meiji Premium 30")
+            .build();
+    //Кнопка для коллагена Puruoi Nano Collagen курс 3 недели
+    private InlineKeyboardButton buttonForСollagenPuruoiNano3 = InlineKeyboardButton.builder()
+            .text("Puruoi Nano Collagen курс 3 недели")
+            .callbackData("puruoi Nano 3 недели")
+            .build();
+    //Кнопка для коллагена Topvalu японский коллаген на 32 дня
+    private InlineKeyboardButton buttonForСollagenTopvalu32 = InlineKeyboardButton.builder()
+            .text("Topvalu японский коллаген на 32 дня")
+            .callbackData("opvalu японский 32 дня")
+            .build();
+    //Кнопка для коллагена Ururu In One пептид коллагена в порошке
+    private InlineKeyboardButton buttonForСollagenUruruInOnePeptide = InlineKeyboardButton.builder()
+            .text("Ururu In One пептид коллагена в порошке")
+            .callbackData("ururu In One пептид")
+            .build();
+    //Кнопка для коллагена Wakasapri коллаген и гиалуроновая кислота в саше
+    private InlineKeyboardButton buttonForСollagenWakasapriSachet = InlineKeyboardButton.builder()
+            .text("Wakasapri коллаген и гиалуроновая кислота в саше")
+            .callbackData("wakasapri гиалуроновая кислота в саше")
+            .build();
+    //Кнопка для коллагена Коллаген Astalift в порошке
+    private InlineKeyboardButton buttonForСollagenAstaliftPowder = InlineKeyboardButton.builder()
+            .text("Коллаген Astalift в порошке")
+            .callbackData("astalift в порошке")
+            .build();
+    //Кнопка для коллагена Коллаген Nimi из морской рыбы
+    private InlineKeyboardButton buttonForСollagenNimiPowder = InlineKeyboardButton.builder()
+            .text("Коллаген Nimi из морской рыбы")
+            .callbackData("коллаген Nimi из морской рыбы")
+            .build();
+    //Кнопка для коллагена Коллаген Nimi из пресноводной рыбы
+    private InlineKeyboardButton buttonForСollagenNimiFreshwaterPowder = InlineKeyboardButton.builder()
+            .text("Коллаген Nimi из пресноводной рыбы")
+            .callbackData("коллаген Nimi из пресноводной рыбы")
+            .build();
+    //Кнопка для коллагена Коллаген Shiseido порошок New
+    private InlineKeyboardButton buttonForСollagenShiseidoNewPowder = InlineKeyboardButton.builder()
+            .text("Коллаген Shiseido порошок New")
+            .callbackData("коллаген Shiseido порошок New")
+            .build();
+    //Кнопка для коллагена Пептид рыбьего коллагена Green Farm 100 г
+    private InlineKeyboardButton buttonForСollagenGreenFarm100Powder = InlineKeyboardButton.builder()
+            .text("Пептид рыбьего коллагена Green Farm 100 г")
+            .callbackData("пептид рыбьего Green Farm 100")
+            .build();
+    //Кнопка для коллагена Пептид рыбьего коллагена Green Farm 320 г
+    private InlineKeyboardButton buttonForСollagenGreenFarm320Powder = InlineKeyboardButton.builder()
+            .text("Пептид рыбьего коллагена Green Farm 320 г")
+            .callbackData("пептид рыбьего Green Farm 320")
+            .build();
+    //Кнопка для коллагена Пептид рыбьего коллагена Nichie 500g
+    private InlineKeyboardButton buttonForСollagenNichie500Powder = InlineKeyboardButton.builder()
+            .text("Пептид рыбьего коллагена Nichie 500g")
+            .callbackData("пептид рыбьего Nichie 500")
+            .build();
     //Клавиатура для коллагенов в порошке
     private InlineKeyboardMarkup keyboardForButtonForPowderCollagen = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForСollagenNichie100))
@@ -167,6 +262,25 @@ public class Bot extends TelegramLongPollingBot {
             .keyboardRow(List.of(buttonForСollagenFanclDeepCharge))
             .keyboardRow(List.of(buttonForСollagenFineJapanHyaluronCollagenQ10))
             .keyboardRow(List.of(buttonForСollagenFineJapanHyaluronCollagen28))
+            .keyboardRow(List.of(buttonForСollagenMeijiAminoMatchaFlavor))
+            .keyboardRow(List.of(buttonForСollagenMeijiAminoMen))
+            .keyboardRow(List.of(buttonForСollagenMeijiAmino28))
+            .keyboardRow(List.of(buttonForСollagenMeijiAmino30))
+            .keyboardRow(List.of(buttonForСollagenMeijiAminoCalcium))
+            .keyboardRow(List.of(buttonForСollagenMeijiAminoPremium28))
+            .keyboardRow(List.of(buttonForСollagenMeijiPremium14))
+            .keyboardRow(List.of(buttonForСollagenMeijiPremium30))
+            .keyboardRow(List.of(buttonForСollagenPuruoiNano3))
+            .keyboardRow(List.of(buttonForСollagenTopvalu32))
+            .keyboardRow(List.of(buttonForСollagenUruruInOnePeptide))
+            .keyboardRow(List.of(buttonForСollagenWakasapriSachet))
+            .keyboardRow(List.of(buttonForСollagenAstaliftPowder))
+            .keyboardRow(List.of(buttonForСollagenNimiPowder))
+            .keyboardRow(List.of(buttonForСollagenNimiFreshwaterPowder))
+            .keyboardRow(List.of(buttonForСollagenShiseidoNewPowder))
+            .keyboardRow(List.of(buttonForСollagenGreenFarm100Powder))
+            .keyboardRow(List.of(buttonForСollagenGreenFarm320Powder))
+            .keyboardRow(List.of(buttonForСollagenNichie500Powder))
             .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
