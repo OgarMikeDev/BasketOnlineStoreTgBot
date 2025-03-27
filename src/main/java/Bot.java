@@ -663,6 +663,9 @@ public class Bot extends TelegramLongPollingBot {
             Document document = Jsoup.connect(urlWebPageWithCategoryCollagen).get();
             String strHtmlCode = String.valueOf(document);
 
+            FileWriter fileWriter = new FileWriter(pathToFileWithHtmlCode);
+            fileWriter.write(strHtmlCode);
+
             Elements elements = document.select(".jet-woo-products__inner-box");
             for (Element currentElement : elements) {
                 String strCurrentElement = String.valueOf(currentElement).strip();
@@ -677,9 +680,6 @@ public class Bot extends TelegramLongPollingBot {
                     priceCollagen = Integer.parseInt(strPrice);
                 }
             }
-
-            FileWriter fileWriter = new FileWriter(pathToFileWithHtmlCode);
-            fileWriter.write(strHtmlCode);
         } catch (Exception ex) {
             ex.getMessage();
         }
