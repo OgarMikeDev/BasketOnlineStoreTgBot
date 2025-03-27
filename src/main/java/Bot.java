@@ -530,6 +530,18 @@ public class Bot extends TelegramLongPollingBot {
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/Meiji Premium Collagen порошок на 14 дней.webp")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenMeijiPremium30.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenMeijiPremium30.getText(), urlWebPageWithPowderCategoryCollagen);
+                currentNameCollagen = buttonForСollagenMeijiPremium30.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/Meiji Premium Collagen порошок на 30 дней в упаковке.webp")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenPuruoiNano3.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenPuruoiNano3.getText(), urlWebPageWithPowderCategoryCollagen);
+                currentNameCollagen = buttonForСollagenPuruoiNano3.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/Puruoi Nano Collagen курс 3 недели.webp")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             }
             //Коллаген в таблетках
             else if (callbackData.equals(buttonForСollagenAsahiDearNatura.getCallbackData())) {
