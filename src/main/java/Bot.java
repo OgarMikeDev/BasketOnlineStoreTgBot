@@ -494,6 +494,24 @@ public class Bot extends TelegramLongPollingBot {
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/Meiji Amino Collagen Matcha Flavor.webp")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenMeijiAminoMen.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenMeijiAminoMen.getText(), urlWebPageWithPowderCategoryCollagen);
+                currentNameCollagen = buttonForСollagenMeijiAminoMen.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/Meiji Amino Collagen Men в порошке.webp")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenMeijiAmino28.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenMeijiAmino28.getText(), urlWebPageWithPowderCategoryCollagen);
+                currentNameCollagen = buttonForСollagenMeijiAmino28.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/Meiji Amino Collagen порошок на 28 дней.webp")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenMeijiAmino30.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenMeijiAmino30.getText(), urlWebPageWithPowderCategoryCollagen);
+                currentNameCollagen = buttonForСollagenMeijiAmino30.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/Meiji Amino Collagen порошок на 30 дней в упаковке.webp")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             }
             //Коллаген в таблетках
             else if (callbackData.equals(buttonForСollagenAsahiDearNatura.getCallbackData())) {
