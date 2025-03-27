@@ -26,6 +26,8 @@ public class Bot extends TelegramLongPollingBot {
     private String urlWebPageWithLiquidCategoryCollagen = "https://kollagen.life/product-category/pitevoj-kollagen";
     //URL категории порошкового коллагена
     private String urlWebPageWithPowderCategoryCollagen = "https://kollagen.life/product-category/kollagen-v-poroshke";
+    //URL категории таблетированного коллагена
+    private String urlWebPageWithTabletCategoryCollagen = "https://kollagen.life/product-category/kollagen-v-tabletkah";
     //Путь к файлу с html-кодом 
     private String pathToFileWithHtmlCode = "src/main/resources/data/htmlCodeWebPage.html";
     //Название текущего коллагена
@@ -123,7 +125,7 @@ public class Bot extends TelegramLongPollingBot {
             .text("DHC нано активный коллаген рыбий")
             .callbackData("нано активный коллаген рыбий DHC")
             .build();
-    //Клавиатура для кнопки для коллагена DHC 12000mg
+    //Клавиатура для питьевых коллагенов
     private InlineKeyboardMarkup keyboardForButtonForLiquidCollagen = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForСollagenDHC12000))
             .keyboardRow(List.of(buttonForСollagenShiseidoRelacle))
@@ -158,13 +160,48 @@ public class Bot extends TelegramLongPollingBot {
             .text("Fine Japan Hyaluron &amp; Collagen на 28 дней")
             .callbackData("fine Japan Hyaluron 28")
             .build();
-    //Клавиатура для кнопки для коллагена DHC 12000mg
+    //Клавиатура для коллагенов в порошке
     private InlineKeyboardMarkup keyboardForButtonForPowderCollagen = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForСollagenNichie100))
             .keyboardRow(List.of(buttonForСollagenDHC5000))
             .keyboardRow(List.of(buttonForСollagenFanclDeepCharge))
             .keyboardRow(List.of(buttonForСollagenFineJapanHyaluronCollagenQ10))
             .keyboardRow(List.of(buttonForСollagenFineJapanHyaluronCollagen28))
+            .keyboardRow(List.of(buttonForReturnBack))
+            .build();
+
+    //Кнопка для коллагена Asahi Dear Natura коллаген в таблетках
+    private InlineKeyboardButton buttonForСollagenAsahiDearNatura = InlineKeyboardButton.builder()
+            .text("Asahi Dear Natura коллаген в таблетках")
+            .callbackData("asahi Dear Natura")
+            .build();
+    //Кнопка для коллагена DHC коллаген в таблетках на 60 дней
+    private InlineKeyboardButton buttonForСollagenDHC60Tablet = InlineKeyboardButton.builder()
+            .text("DHC коллаген в таблетках на 60 дней")
+            .callbackData("dhc таблетки 60 дней")
+            .build();
+    //Кнопка для коллагена Fancl Deep Charge collagen в таблетках
+    private InlineKeyboardButton buttonForСollagenFanclDeepChargeTablet  = InlineKeyboardButton.builder()
+            .text("Fancl Deep Charge collagen в таблетках")
+            .callbackData("fancl Deep Charge collagen таблетки")
+            .build();
+    //Кнопка для коллагена Shiseido Enriched коллаген таблетки
+    private InlineKeyboardButton buttonForСollagenShiseidoEnrichedTablet = InlineKeyboardButton.builder()
+            .text("Shiseido Enriched коллаген таблетки")
+            .callbackData("shiseido Enriched коллаген таблетки")
+            .build();
+    //Кнопка для коллагена Shiseido EX коллаген в таблетках
+    private InlineKeyboardButton buttonForСollagenShiseidoEXTablet = InlineKeyboardButton.builder()
+            .text("Shiseido EX коллаген в таблетках")
+            .callbackData("shiseido EX коллаген в таблетках")
+            .build();
+    //Клавиатура для кнопки для коллагена DHC 12000mg
+    private InlineKeyboardMarkup keyboardForButtonForTabletCollagen = InlineKeyboardMarkup.builder()
+            .keyboardRow(List.of(buttonForСollagenAsahiDearNatura))
+            .keyboardRow(List.of(buttonForСollagenDHC60Tablet))
+            .keyboardRow(List.of(buttonForСollagenFanclDeepChargeTablet))
+            .keyboardRow(List.of(buttonForСollagenShiseidoEnrichedTablet))
+            .keyboardRow(List.of(buttonForСollagenShiseidoEXTablet))
             .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
@@ -234,6 +271,9 @@ public class Bot extends TelegramLongPollingBot {
             } else if (callbackData.equals(buttonForPowderCollagen.getCallbackData())) {
                 editMessageText.setText("Коллаген в порошке");
                 editMessageReplyMarkup.setReplyMarkup(keyboardForButtonForPowderCollagen);
+            } else if (callbackData.equals(buttonForTabletCollagen.getCallbackData())) {
+                editMessageText.setText("Коллаген в таблетках");
+                editMessageReplyMarkup.setReplyMarkup(keyboardForButtonForTabletCollagen);
             } else if (callbackData.equals(buttonForСollagenDHC12000.getCallbackData())) {
                 currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenDHC12000.getText(), urlWebPageWithLiquidCategoryCollagen);
                 currentNameCollagen = buttonForСollagenDHC12000.getText();
@@ -293,6 +333,36 @@ public class Bot extends TelegramLongPollingBot {
                 currentNameCollagen = buttonForСollagenFineJapanHyaluronCollagen28.getText();
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/xCollagen-fine-gold-hyaluron-and-collagen-can1-300x300.jpg.pagespeed.ic.UF76UORtGX.jpg")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenAsahiDearNatura.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenAsahiDearNatura.getText(), urlWebPageWithTabletCategoryCollagen);
+                currentNameCollagen = buttonForСollagenAsahiDearNatura.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/xAsahi-dear-natura-collagen-300x300.jpg.pagespeed.ic.MSiksS3paR.webp")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenDHC60Tablet.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenDHC60Tablet.getText(), urlWebPageWithTabletCategoryCollagen);
+                currentNameCollagen = buttonForСollagenDHC60Tablet.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/xdhc_collagen_tablets1-300x300.jpg.pagespeed.ic.8TlBiiHjrj (1).webp")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenFanclDeepChargeTablet.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenFanclDeepChargeTablet.getText(), urlWebPageWithTabletCategoryCollagen);
+                currentNameCollagen = buttonForСollagenFanclDeepChargeTablet.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/xfancl-deep-charge-collagen-tablets-new-300x300.jpg.pagespeed.ic.0ySqu1z8r_.jfif")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenShiseidoEnrichedTablet.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenShiseidoEnrichedTablet.getText(), urlWebPageWithTabletCategoryCollagen);
+                currentNameCollagen = buttonForСollagenShiseidoEnrichedTablet.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/xshiseido_collagen_enriched_tablets-300x300.jpg.pagespeed.ic.JDW0bJfUWN.webp")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenShiseidoEXTablet.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenShiseidoEXTablet.getText(), urlWebPageWithTabletCategoryCollagen);
+                currentNameCollagen = buttonForСollagenShiseidoEXTablet.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/xshiseido_collagen_ex_tablets-300x300.jpg.pagespeed.ic.bctUc0r1wK.webp")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             } else if (callbackData.equals(buttonForMyBasket.getCallbackData())) {
                 for (Map.Entry<Long, List<Collagen>> allCollagen : mapCollagen.entrySet()) {
