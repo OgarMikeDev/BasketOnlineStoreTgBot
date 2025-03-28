@@ -125,6 +125,106 @@ public class Bot extends TelegramLongPollingBot {
             .text("DHC нано активный коллаген рыбий")
             .callbackData("нано активный коллаген рыбий DHC")
             .build();
+    //Кнопка для коллагена Extra Collagen Luzi антивозрастной жидкий коллаген
+    private InlineKeyboardButton buttonForСollagenExtraLuzi = InlineKeyboardButton.builder()
+            .text("Extra Collagen Luzi антивозрастной жидкий коллаген")
+            .callbackData("extra Luzi liquid")
+            .build();
+    //Кнопка для коллагена Fancl Deep Charge collagen питьевой
+    private InlineKeyboardButton buttonForСollagenFanclDeepChargeLiquid = InlineKeyboardButton.builder()
+            .text("Fancl Deep Charge collagen питьевой")
+            .callbackData("fancl Deep Charge")
+            .build();
+    //Кнопка для коллагена Fracora ECM рыбий питьевой коллаген
+    private InlineKeyboardButton buttonForСollagenFracoraECMLiquid = InlineKeyboardButton.builder()
+            .text("Fracora ECM рыбий питьевой коллаген")
+            .callbackData("fracora ECM рыбий")
+            .build();
+    //Кнопка для коллагена H·B Collagen Clear Plus питьевой коллаген
+    private InlineKeyboardButton buttonForСollagenHBClearPrusLiquid = InlineKeyboardButton.builder()
+            .text("H·B Collagen Clear Plus питьевой коллаген")
+            .callbackData("h b clear plus")
+            .build();
+    //Кнопка для коллагена Kinohimitsu Collagen Diamond 5300 16’S коллаген
+    private InlineKeyboardButton buttonForСollagenKinohimitsuDiamond530016Liquid = InlineKeyboardButton.builder()
+            .text("Kinohimitsu Collagen Diamond 5300 16’S коллаген")
+            .callbackData("kinohimitsu Diamond 5300 16’S")
+            .build();
+    //Кнопка для коллагена Kinohimitsu Collagen Men 5300 16’s питьевой
+    private InlineKeyboardButton buttonForСollagenKinohimitsuMen530016Liquid = InlineKeyboardButton.builder()
+            .text("Kinohimitsu Collagen Men 5300 16’s питьевой")
+            .callbackData("kinohimitsu Men 5300 16’S")
+            .build();
+    //Кнопка для коллагена Kinohimitsu Diamond Nite 16’s коллаген
+    private InlineKeyboardButton buttonForСollagenKinohimitsuDiamondNite16Liquid = InlineKeyboardButton.builder()
+            .text("Kinohimitsu Diamond Nite 16’s коллаген")
+            .callbackData("kinohimitsu Diamond Nite 16’s")
+            .build();
+    //Кнопка для коллагена Kinohimitsu StemCell Drink 16’s коллаген
+    private InlineKeyboardButton buttonForСollagenKinohimitsuStemCellDrink16Liquid = InlineKeyboardButton.builder()
+            .text("Kinohimitsu StemCell Drink 16’s коллаген")
+            .callbackData("kinohimitsu StemCell Drink 16’s")
+            .build();
+    //Кнопка для коллагена Kotobuki жидкий питьевой коллаген для кожи
+    private InlineKeyboardButton buttonForСollagenKotobukiLiquid = InlineKeyboardButton.builder()
+            .text("Kotobuki жидкий питьевой коллаген для кожи")
+            .callbackData("kotobuki жидкий питьевой")
+            .build();
+    //Кнопка для коллагена LANIE-EX питьевой коллаген пептид
+    private InlineKeyboardButton buttonForСollagenLANIEEXLiquid = InlineKeyboardButton.builder()
+            .text("LANIE-EX питьевой коллаген пептид")
+            .callbackData("lANIE-EX питьевой коллаген пептид")
+            .build();
+    //Кнопка для коллагена Le Resveratrol Collagen 6000 mg питьевой
+    private InlineKeyboardButton buttonForСollagenLeResveratrol6000Liquid = InlineKeyboardButton.builder()
+            .text("Le Resveratrol Collagen 6000 mg питьевой")
+            .callbackData("le Resveratrol Collagen 6000 mg питьевой")
+            .build();
+    //Кнопка для коллагена Madrex Collagen 20000 Plus жидкий коллаген
+    private InlineKeyboardButton buttonForСollagenMadrex20000PlusLiquid = InlineKeyboardButton.builder()
+            .text("Madrex Collagen 20000 Plus жидкий коллаген")
+            .callbackData("madrex Collagen 20000 Plus")
+            .build();
+    //Кнопка для коллагена Meiji Amino Drink tetra pack коллаген 125 мл x 24
+    private InlineKeyboardButton buttonForСollagenMeijiAminoDrink125Liquid = InlineKeyboardButton.builder()
+            .text("Meiji Amino Drink tetra pack коллаген 125 мл x 24")
+            .callbackData("meiji Amino Drink tetra pack")
+            .build();
+    //Кнопка для коллагена Nucos Spa Collagen 10000 питьевой
+    private InlineKeyboardButton buttonForСollagenNucosSpa10000Liquid = InlineKeyboardButton.builder()
+            .text("Nucos Spa Collagen 10000 питьевой")
+            .callbackData("nucos Spa Collagen 10000")
+            .build();
+    //Кнопка для коллагена RaRa жидкий рыбий коллаген на 30 дней
+    private InlineKeyboardButton buttonForСollagenRaRa30Liquid = InlineKeyboardButton.builder()
+            .text("RaRa жидкий рыбий коллаген на 30 дней")
+            .callbackData("raRa жидкий рыбий дней")
+            .build();
+    //Кнопка для коллагена Royagen Collagen Brillian питьевой 10000 мг
+    private InlineKeyboardButton buttonForСollagenRoyagenBrillianLiquid = InlineKeyboardButton.builder()
+            .text("Royagen Collagen Brillian питьевой 10000 мг")
+            .callbackData("royagen Brillian 10000")
+            .build();
+    //Кнопка для коллагена Royagen Collagen Kijun Drink 12000 мг
+    private InlineKeyboardButton buttonForСollagenRoyagenKijunLiquid = InlineKeyboardButton.builder()
+            .text("Royagen Collagen Kijun Drink 12000 мг")
+            .callbackData("royagen Kijun Drink 12000")
+            .build();
+    //Кнопка для коллагена Shiseido B-Shot питьевой коллаген 30мл х 10
+    private InlineKeyboardButton buttonForСollagenShiseidoBShotLiquid = InlineKeyboardButton.builder()
+            .text("Shiseido B-Shot питьевой коллаген 30мл х 10")
+            .callbackData("shiseido B-Shot 30мл х 10")
+            .build();
+    //Кнопка для коллагена Shiseido Benefique Booster коллаген 50мл х 10
+    private InlineKeyboardButton buttonForСollagenShiseidoBenefique5010Liquid = InlineKeyboardButton.builder()
+            .text("Shiseido Benefique Booster коллаген 50мл х 10")
+            .callbackData("shiseido Benefique Booster")
+            .build();
+    //Кнопка для коллагена Shiseido The Collagen EXR Drink
+    private InlineKeyboardButton buttonForСollagenShiseidoTheEXRLiquid = InlineKeyboardButton.builder()
+            .text("Shiseido The Collagen EXR Drink")
+            .callbackData("shiseido Benefique Booster")
+            .build();
     //Клавиатура для питьевых коллагенов
     private InlineKeyboardMarkup keyboardForButtonForLiquidCollagen = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForСollagenDHC12000))
@@ -132,6 +232,26 @@ public class Bot extends TelegramLongPollingBot {
             .keyboardRow(List.of(buttonForСollagenBLACKMORES))
             .keyboardRow(List.of(buttonForСollagenDHC9000Plus))
             .keyboardRow(List.of(buttonForСollagenDHCNanoActive))
+            .keyboardRow(List.of(buttonForСollagenExtraLuzi))
+            .keyboardRow(List.of(buttonForСollagenFanclDeepChargeLiquid))
+            .keyboardRow(List.of(buttonForСollagenFracoraECMLiquid))
+            .keyboardRow(List.of(buttonForСollagenHBClearPrusLiquid))
+            .keyboardRow(List.of(buttonForСollagenKinohimitsuDiamond530016Liquid))
+            .keyboardRow(List.of(buttonForСollagenKinohimitsuMen530016Liquid))
+            .keyboardRow(List.of(buttonForСollagenKinohimitsuDiamondNite16Liquid))
+            .keyboardRow(List.of(buttonForСollagenKinohimitsuStemCellDrink16Liquid))
+            .keyboardRow(List.of(buttonForСollagenKotobukiLiquid))
+            .keyboardRow(List.of(buttonForСollagenLANIEEXLiquid))
+            .keyboardRow(List.of(buttonForСollagenLeResveratrol6000Liquid))
+            .keyboardRow(List.of(buttonForСollagenMadrex20000PlusLiquid))
+            .keyboardRow(List.of(buttonForСollagenMeijiAminoDrink125Liquid))
+            .keyboardRow(List.of(buttonForСollagenNucosSpa10000Liquid))
+            .keyboardRow(List.of(buttonForСollagenRaRa30Liquid))
+            .keyboardRow(List.of(buttonForСollagenRoyagenBrillianLiquid))
+            .keyboardRow(List.of(buttonForСollagenRoyagenKijunLiquid))
+            .keyboardRow(List.of(buttonForСollagenShiseidoBShotLiquid))
+            .keyboardRow(List.of(buttonForСollagenShiseidoBenefique5010Liquid))
+            .keyboardRow(List.of(buttonForСollagenShiseidoTheEXRLiquid))
             .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
@@ -758,11 +878,11 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "@BagrovOnlineShop_bot";
+        return "@basket_online_store_tg_bot";
     }
 
     @Override
     public String getBotToken() {
-        return "7473090082:AAHnc_nK221XsaU8tG6Msoj3BdUBHSfnu1c";
+        return "7785069816:AAGsxaM_rYQLCC3mW-j-QIj5qBrIM576GRQ";
     }
 }
