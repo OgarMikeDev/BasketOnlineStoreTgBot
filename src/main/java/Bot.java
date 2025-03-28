@@ -225,6 +225,65 @@ public class Bot extends TelegramLongPollingBot {
             .text("Shiseido The Collagen EXR Drink")
             .callbackData("shiseido Benefique Booster")
             .build();
+    private InlineKeyboardButton buttonForСollagenSofina = InlineKeyboardButton.builder().
+            text("Sofina IP пептид рыбьего коллагена")
+            .callbackData("sofina IP")
+            .build();
+    private InlineKeyboardButton buttonForСollagenSuperRoicosmo = InlineKeyboardButton.builder()
+            .text("Super Collagen Roicosmo для суставов и связок")
+            .callbackData("super Roicosmo")
+            .build();
+    private InlineKeyboardButton buttonForСollagenTherawInterTechno = InlineKeyboardButton.builder()
+            .text("The raw collagen Inter Techno 25000 мг")
+            .callbackData("the raw Inter Techno")
+            .build();
+    private InlineKeyboardButton buttonForСollagenYoungLiving = InlineKeyboardButton.builder()
+            .text("Young Living BLOOM Collagen Complete")
+            .callbackData("young Living").build();
+    private InlineKeyboardButton buttonForСollagenHyaluron = InlineKeyboardButton.builder()
+            .text("Гиалуроновая кислота Hyaluron Top 10 x 50 мл")
+            .callbackData("hyaluron")
+            .build();
+    private InlineKeyboardButton buttonForСollagenOhhira = InlineKeyboardButton.builder()
+            .text("Жидкий коллаген Dr. Ohhira OM-X Plus Collagen")
+            .callbackData("ohhira").build();
+    private InlineKeyboardButton buttonForСollagenReFa = InlineKeyboardButton.builder()
+            .text("Жидкий коллаген ReFa Collagen Enrich")
+            .callbackData("refa")
+            .build();
+    private InlineKeyboardButton buttonForСollagenAlmado = InlineKeyboardButton.builder()
+            .text("Жидкий японский коллаген III типа Almado")
+            .callbackData("almado").build();
+    private InlineKeyboardButton buttonForСollagenNichie = InlineKeyboardButton.builder()
+            .text("Коллаген Nichie пептид питьевой 50 мл x 10")
+            .callbackData("nichie")
+            .build();
+    private InlineKeyboardButton buttonForСollagenDandyupRoicosmo = InlineKeyboardButton.builder()
+            .text("Коллаген для мужчин Dandyup Roicosmo 20000 мг")
+            .callbackData("dandyup Roicosmo")
+            .build();
+    private InlineKeyboardButton buttonForСollagenJaimPomegranateJelly = InlineKeyboardButton.builder()
+            .text("Корейский коллаген Jaim Pomegranate Collagen Jelly")
+            .callbackData("jaim Pomegranate")
+            .build();
+    private InlineKeyboardButton buttonForСollagenTeenOpskin = InlineKeyboardButton.builder()
+            .text("Корейский коллаген в желе Teen Collagen Opskin")
+            .callbackData("teen Opskin").build();
+    private InlineKeyboardButton buttonForСollagenChansonCosmetics = InlineKeyboardButton.builder()
+            .text("Морской коллаген Chanson Cosmetics из тунца")
+            .callbackData("Chanson Cosmetics")
+            .build();
+    private InlineKeyboardButton buttonForСollagenRoicosmoVitaColla = InlineKeyboardButton.builder()
+            .text("Пептид коллагена Roicosmo Vita-Colla 20000 mg")
+            .callbackData("roicosmo Vita-Colla")
+            .build();
+    private InlineKeyboardButton buttonForСollagenAstalift = InlineKeyboardButton.builder()
+            .text("Питьевой коллаген Astalift 10000 mg").callbackData("astalift")
+            .build();
+    private InlineKeyboardButton buttonForСollagenDomohornWrinkle = InlineKeyboardButton.builder()
+            .text("Питьевой коллаген Domohorn Wrinkle")
+            .callbackData("astalift").build();
+
     //Клавиатура для питьевых коллагенов
     private InlineKeyboardMarkup keyboardForButtonForLiquidCollagen = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForСollagenDHC12000))
@@ -415,7 +474,7 @@ public class Bot extends TelegramLongPollingBot {
             .callbackData("dhc таблетки 60 дней")
             .build();
     //Кнопка для коллагена Fancl Deep Charge collagen в таблетках
-    private InlineKeyboardButton buttonForСollagenFanclDeepChargeTablet  = InlineKeyboardButton.builder()
+    private InlineKeyboardButton buttonForСollagenFanclDeepChargeTablet = InlineKeyboardButton.builder()
             .text("Fancl Deep Charge collagen в таблетках")
             .callbackData("fancl Deep Charge collagen таблетки")
             .build();
