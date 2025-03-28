@@ -225,8 +225,8 @@ public class Bot extends TelegramLongPollingBot {
             .text("Shiseido The Collagen EXR Drink")
             .callbackData("shiseido Benefique Booster")
             .build();
-    private InlineKeyboardButton buttonForСollagenSofina = InlineKeyboardButton.builder().
-            text("Sofina IP пептид рыбьего коллагена")
+    private InlineKeyboardButton buttonForСollagenSofina = InlineKeyboardButton.builder()
+            .text("Sofina IP пептид рыбьего коллагена")
             .callbackData("sofina IP")
             .build();
     private InlineKeyboardButton buttonForСollagenSuperRoicosmo = InlineKeyboardButton.builder()
@@ -246,14 +246,16 @@ public class Bot extends TelegramLongPollingBot {
             .build();
     private InlineKeyboardButton buttonForСollagenOhhira = InlineKeyboardButton.builder()
             .text("Жидкий коллаген Dr. Ohhira OM-X Plus Collagen")
-            .callbackData("ohhira").build();
+            .callbackData("ohhira")
+            .build();
     private InlineKeyboardButton buttonForСollagenReFa = InlineKeyboardButton.builder()
             .text("Жидкий коллаген ReFa Collagen Enrich")
             .callbackData("refa")
             .build();
     private InlineKeyboardButton buttonForСollagenAlmado = InlineKeyboardButton.builder()
             .text("Жидкий японский коллаген III типа Almado")
-            .callbackData("almado").build();
+            .callbackData("almado")
+            .build();
     private InlineKeyboardButton buttonForСollagenNichie = InlineKeyboardButton.builder()
             .text("Коллаген Nichie пептид питьевой 50 мл x 10")
             .callbackData("nichie")
@@ -268,7 +270,8 @@ public class Bot extends TelegramLongPollingBot {
             .build();
     private InlineKeyboardButton buttonForСollagenTeenOpskin = InlineKeyboardButton.builder()
             .text("Корейский коллаген в желе Teen Collagen Opskin")
-            .callbackData("teen Opskin").build();
+            .callbackData("teen Opskin")
+            .build();
     private InlineKeyboardButton buttonForСollagenChansonCosmetics = InlineKeyboardButton.builder()
             .text("Морской коллаген Chanson Cosmetics из тунца")
             .callbackData("Chanson Cosmetics")
@@ -278,11 +281,34 @@ public class Bot extends TelegramLongPollingBot {
             .callbackData("roicosmo Vita-Colla")
             .build();
     private InlineKeyboardButton buttonForСollagenAstalift = InlineKeyboardButton.builder()
-            .text("Питьевой коллаген Astalift 10000 mg").callbackData("astalift")
+            .text("Питьевой коллаген Astalift 10000 mg")
+            .callbackData("astalift")
             .build();
-    private InlineKeyboardButton buttonForСollagenDomohornWrinkle = InlineKeyboardButton.builder()
+    //Кнопка для коллагена Питьевой коллаген Domohorn Wrinkle
+    private InlineKeyboardButton buttonForСollagenDomohornWrinkleLiquid = InlineKeyboardButton.builder()
             .text("Питьевой коллаген Domohorn Wrinkle")
-            .callbackData("astalift").build();
+            .callbackData("питьевой Domohorn Wrinkle")
+            .build();
+    //Кнопка для коллагена Питьевой коллаген Honey Collagen Hacci 1912
+    private InlineKeyboardButton buttonForСollagenHoneyHacci1912Liquid = InlineKeyboardButton.builder()
+            .text("Питьевой коллаген Honey Collagen Hacci 1912")
+            .callbackData("honey Collagen Hacci 1912")
+            .build();
+    //Кнопка для коллагена Питьевой коллаген Shiseido New
+    private InlineKeyboardButton buttonForСollagenShiseidoNewLiquid = InlineKeyboardButton.builder()
+            .text("Питьевой коллаген Shiseido New")
+            .callbackData("питьевой коллаген Shiseido New")
+            .build();
+    //Кнопка для коллагена Питьевой рыбий коллаген Utsukushido
+    private InlineKeyboardButton buttonForСollagenUtsukushidoLiquid = InlineKeyboardButton.builder()
+            .text("Питьевой рыбий коллаген Utsukushido")
+            .callbackData("питьевой коллаген Utsukushido")
+            .build();
+    //Кнопка для коллагена Премиум коллаген HSC для кожи против морщин
+    private InlineKeyboardButton buttonForСollagenHSCLiquid = InlineKeyboardButton.builder()
+            .text("Премиум коллаген HSC для кожи против морщин")
+            .callbackData("премиум HSC для кожи")
+            .build();
 
     //Клавиатура для питьевых коллагенов
     private InlineKeyboardMarkup keyboardForButtonForLiquidCollagen = InlineKeyboardMarkup.builder()
@@ -311,6 +337,26 @@ public class Bot extends TelegramLongPollingBot {
             .keyboardRow(List.of(buttonForСollagenShiseidoBShotLiquid))
             .keyboardRow(List.of(buttonForСollagenShiseidoBenefique5010Liquid))
             .keyboardRow(List.of(buttonForСollagenShiseidoTheEXRLiquid))
+            .keyboardRow(List.of(buttonForСollagenSofina))
+            .keyboardRow(List.of(buttonForСollagenSuperRoicosmo))
+            .keyboardRow(List.of(buttonForСollagenTherawInterTechno))
+            .keyboardRow(List.of(buttonForСollagenYoungLiving))
+            .keyboardRow(List.of(buttonForСollagenHyaluron))
+            .keyboardRow(List.of(buttonForСollagenOhhira))
+            .keyboardRow(List.of(buttonForСollagenReFa))
+            .keyboardRow(List.of(buttonForСollagenAlmado))
+            .keyboardRow(List.of(buttonForСollagenNichie))
+            .keyboardRow(List.of(buttonForСollagenDandyupRoicosmo))
+            .keyboardRow(List.of(buttonForСollagenJaimPomegranateJelly))
+            .keyboardRow(List.of(buttonForСollagenTeenOpskin))
+            .keyboardRow(List.of(buttonForСollagenChansonCosmetics))
+            .keyboardRow(List.of(buttonForСollagenRoicosmoVitaColla))
+            .keyboardRow(List.of(buttonForСollagenAstalift))
+            .keyboardRow(List.of(buttonForСollagenDomohornWrinkleLiquid))
+            .keyboardRow(List.of(buttonForСollagenHoneyHacci1912Liquid))
+            .keyboardRow(List.of(buttonForСollagenShiseidoNewLiquid))
+            .keyboardRow(List.of(buttonForСollagenUtsukushidoLiquid))
+            .keyboardRow(List.of(buttonForСollagenHSCLiquid))
             .keyboardRow(List.of(buttonForReturnBack))
             .build();
 
