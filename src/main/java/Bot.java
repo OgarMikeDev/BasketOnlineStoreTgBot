@@ -709,6 +709,12 @@ public class Bot extends TelegramLongPollingBot {
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/Fancl Deep Charge collagen питьевой.jfif")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenFracoraECMLiquid.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenFracoraECMLiquid.getText(), urlWebPageWithLiquidCategoryCollagen);
+                currentNameCollagen = buttonForСollagenFracoraECMLiquid.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/Fracora ECM рыбий питьевой коллаген.jfif")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             }
             //Коллаген в порошке
             else if (callbackData.equals(buttonForСollagenNichie100.getCallbackData())) {
