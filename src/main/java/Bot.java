@@ -225,61 +225,77 @@ public class Bot extends TelegramLongPollingBot {
             .text("Shiseido The Collagen EXR Drink")
             .callbackData("shiseido Benefique Booster")
             .build();
+    //Кнопка для коллагена Sofina IP пептид рыбьего коллагена
     private InlineKeyboardButton buttonForСollagenSofina = InlineKeyboardButton.builder()
             .text("Sofina IP пептид рыбьего коллагена")
             .callbackData("sofina IP")
             .build();
+    //Кнопка для коллагена Super Collagen Roicosmo для суставов и связок
     private InlineKeyboardButton buttonForСollagenSuperRoicosmo = InlineKeyboardButton.builder()
             .text("Super Collagen Roicosmo для суставов и связок")
             .callbackData("super Roicosmo")
             .build();
+    //Кнопка для коллагена The raw collagen Inter Techno 25000 мг
     private InlineKeyboardButton buttonForСollagenTherawInterTechno = InlineKeyboardButton.builder()
             .text("The raw collagen Inter Techno 25000 мг")
             .callbackData("the raw Inter Techno")
             .build();
+    //Кнопка для коллагена Young Living BLOOM Collagen Complete
     private InlineKeyboardButton buttonForСollagenYoungLiving = InlineKeyboardButton.builder()
             .text("Young Living BLOOM Collagen Complete")
-            .callbackData("young Living").build();
+            .callbackData("young Living")
+            .build();
+    //Кнопка для коллагена Жидкий коллаген Dr. Ohhira OM-X Plus Collagen
     private InlineKeyboardButton buttonForСollagenHyaluron = InlineKeyboardButton.builder()
             .text("Гиалуроновая кислота Hyaluron Top 10 x 50 мл")
             .callbackData("hyaluron")
             .build();
+    //Кнопка для коллагена Жидкий коллаген Dr. Ohhira OM-X Plus Collagen
     private InlineKeyboardButton buttonForСollagenOhhira = InlineKeyboardButton.builder()
             .text("Жидкий коллаген Dr. Ohhira OM-X Plus Collagen")
             .callbackData("ohhira")
             .build();
+    //Кнопка для коллагена Жидкий коллаген ReFa Collagen Enrich
     private InlineKeyboardButton buttonForСollagenReFa = InlineKeyboardButton.builder()
             .text("Жидкий коллаген ReFa Collagen Enrich")
             .callbackData("refa")
             .build();
+    //Кнопка для коллагена Жидкий японский коллаген III типа Almado
     private InlineKeyboardButton buttonForСollagenAlmado = InlineKeyboardButton.builder()
             .text("Жидкий японский коллаген III типа Almado")
             .callbackData("almado")
             .build();
+    //Кнопка для коллагена Коллаген Nichie пептид питьевой 50 мл x 10
     private InlineKeyboardButton buttonForСollagenNichie = InlineKeyboardButton.builder()
             .text("Коллаген Nichie пептид питьевой 50 мл x 10")
             .callbackData("nichie")
             .build();
+    //Кнопка для коллагена Коллаген для мужчин Dandyup Roicosmo 20000 мг
     private InlineKeyboardButton buttonForСollagenDandyupRoicosmo = InlineKeyboardButton.builder()
             .text("Коллаген для мужчин Dandyup Roicosmo 20000 мг")
             .callbackData("dandyup Roicosmo")
             .build();
+    //Кнопка для коллагена Корейский коллаген Jaim Pomegranate Collagen Jelly
     private InlineKeyboardButton buttonForСollagenJaimPomegranateJelly = InlineKeyboardButton.builder()
             .text("Корейский коллаген Jaim Pomegranate Collagen Jelly")
             .callbackData("jaim Pomegranate")
             .build();
+    //Кнопка для коллагена Корейский коллаген в желе Teen Collagen Opskin
     private InlineKeyboardButton buttonForСollagenTeenOpskin = InlineKeyboardButton.builder()
             .text("Корейский коллаген в желе Teen Collagen Opskin")
             .callbackData("teen Opskin")
             .build();
+    //Кнопка для коллагена Морской коллаген Chanson Cosmetics из тунца
     private InlineKeyboardButton buttonForСollagenChansonCosmetics = InlineKeyboardButton.builder()
             .text("Морской коллаген Chanson Cosmetics из тунца")
-            .callbackData("Chanson Cosmetics")
+            .callbackData("chanson Cosmetics")
             .build();
+    //Кнопка для коллагена Пептид коллагена Roicosmo Vita-Colla 20000 mg
     private InlineKeyboardButton buttonForСollagenRoicosmoVitaColla = InlineKeyboardButton.builder()
             .text("Пептид коллагена Roicosmo Vita-Colla 20000 mg")
             .callbackData("roicosmo Vita-Colla")
             .build();
+    //Кнопка для коллагена Питьевой коллаген Astalift 10000 mg
     private InlineKeyboardButton buttonForСollagenAstalift = InlineKeyboardButton.builder()
             .text("Питьевой коллаген Astalift 10000 mg")
             .callbackData("astalift")
