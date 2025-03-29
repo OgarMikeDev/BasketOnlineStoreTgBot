@@ -1008,11 +1008,18 @@ public class Bot extends TelegramLongPollingBot {
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/Коллаген в капсулах Maruman 15000 мг.webp")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             } else if (callbackData.equals(buttonForMyBasket.getCallbackData())) {
+                StringBuilder builderForNamesCollagen = new StringBuilder();
+                int priceAllCollagen = 0;
                 for (Map.Entry<Long, List<Collagen>> allCollagen : mapCollagen.entrySet()) {
                     if (allCollagen.getKey().equals(chatId)) {
-                        editMessageText.setText("Вывод всех товаров: " + allCollagen.getValue());
+                        for (Collagen currentCollagen : allCollagen.getValue()) {
+                            priceAllCollagen += currentCollagen.getPrice();
+                            builderForNamesCollagen.append(currentCollagen.getName() + " за " + currentCollagen.getPrice() + " руб.\n");
+                        }
                     }
                 }
+                editMessageText.setText("Вывод всех Ваших товаров:\n" + String.valueOf(builderForNamesCollagen) +
+                        "\nОбщая стоимость Вашей корзины равна: " + priceAllCollagen + " руб.");
             }
 
             String strSendPhoto = String.valueOf(sendPhoto);
