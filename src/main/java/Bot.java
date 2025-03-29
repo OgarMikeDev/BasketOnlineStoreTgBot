@@ -775,6 +775,24 @@ public class Bot extends TelegramLongPollingBot {
                 sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
                 sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/Meiji Amino Drink tetra pack коллаген 125 мл x 24.webp")));
                 sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenNucosSpa10000Liquid.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenNucosSpa10000Liquid.getText(), urlWebPageWithLiquidCategoryCollagen);
+                currentNameCollagen = buttonForСollagenNucosSpa10000Liquid.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/Nucos Spa Collagen 10000 питьевой.webp")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenRaRa30Liquid.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenRaRa30Liquid.getText(), urlWebPageWithLiquidCategoryCollagen);
+                currentNameCollagen = buttonForСollagenRaRa30Liquid.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/RaRa жидкий рыбий коллаген на 30 дней.webp")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
+            } else if (callbackData.equals(buttonForСollagenRoyagenBrillianLiquid.getCallbackData())) {
+                currentPriceCollagen = forGetPriceCollagenWithSelectedCategory(buttonForСollagenRoyagenBrillianLiquid.getText(), urlWebPageWithLiquidCategoryCollagen);
+                currentNameCollagen = buttonForСollagenRoyagenBrillianLiquid.getText();
+                sendPhoto.setCaption(currentNameCollagen + " за " + currentPriceCollagen + " руб.");
+                sendPhoto.setPhoto(new InputFile(new File("src/main/resources/data/Royagen Collagen Brillian питьевой 10000 мг.jpeg")));
+                sendPhoto.setReplyMarkup(keyboardForButtonForAddCollagenInBasket);
             }
             //Коллаген в порошке
             else if (callbackData.equals(buttonForСollagenNichie100.getCallbackData())) {
